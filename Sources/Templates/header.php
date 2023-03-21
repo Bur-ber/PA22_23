@@ -28,17 +28,3 @@
               <a href="?.html">?</a>
             </nav>
         </header>
-        <aside>
-            <!-- menu burger ? -->
-        </aside>
-        <section>
-            <!-- calendrier des évènements -->
-        </section>
-        <section>
-            <!-- présentation du site -->
-        </section>
-        <footer>
-
-        </footer>
-    </body>
-</html>
