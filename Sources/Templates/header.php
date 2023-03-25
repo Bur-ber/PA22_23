@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel = "icon" href ="Supplies/Logo-LE.gif" type = "image/x-icon">
+        <link rel = "icon" href ="../../Resources/images/Logo-LE.gif" type = "image/x-icon">
         <title>
           Livry Escalade
         </title>
