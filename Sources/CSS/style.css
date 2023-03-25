@@ -56,9 +56,17 @@ nav {
   border-radius: 30%;
 }
 
+#main {
+  padding: 50px;
+}
+
 #bio {
   max-width: 600px;
   border: 2px #006F9A solid;
+}
+
+#bio a {
+  align-content: center;
 }
 
 #calendar {
