@@ -2,8 +2,18 @@ body {
   background-color: #fff5ee;
 }
 
-.header {
+header {
   padding-bottom: 5px;
+}
+
+.b4-head {
+  padding: 10px;
+  background-color: #332F2C;
+}
+
+.b4-head a svg {
+  height: 60px;
+  width: auto;
 }
 
 #Logo{
@@ -11,7 +21,20 @@ body {
   width: auto;
 }
 
+.form-control {
+  align-self: center;
+  height: 25px;
+  width: 50% !important;
+  border-radius: 1rem !important;
+}
+
+.icon-link {
+  margin: 10px;
+  align-self: flex-end;
+}
+
 nav {
+  background-color: #D9D9D9;
   height: auto;
   text-align: left;
   padding: 10px;
@@ -31,4 +54,25 @@ nav {
 .link-nav-h:hover{
   border: 1px grey solid;
   border-radius: 30%;
+}
+
+#bio {
+  max-width: 600px;
+  border: 2px #006F9A solid;
+}
+
+#calendar {
+  margin: auto;
+}
+
+#calendar table {
+  border: 5px #006F9A solid;
+}
+
+#calendar table th {
+  text-align: center;
+}
+
+footer {
+  background-color: #D9D9D9;
 }

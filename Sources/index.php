@@ -17,17 +17,16 @@
             inscription/connexion, contact, voir sur d'autres sites -->
             <div class="row b4-head">
               <a class="col-md-2" href="index.html"> <img src="Supplies/Logo-LE.gif" id="Logo" alt="Logo club Livry Escalade"> </a>
-
               <!-- Barre de recherche -->
               <form class="col-md-4 d-flex" role="search">
-                <input class="form-control me-3" type="search" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               </form>
 
-
-              <div class="col-md-6">
+              
+              <div class="icon-link col-md-6">
 
               <!-- Logo Mail -->
-              <a href="mail.php" class="icon-link">
+              <a href="mail.php" class="col-md-2">
                 <svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="47.5" cy="47.5" r="47.5" fill="#006F9A"/>
                   <rect x="15.5" y="24.5" width="64" height="46" rx="8.5" fill="white" stroke="#006F9A" stroke-width="3"/>
@@ -36,7 +35,7 @@
               </a>
 
               <!-- Logo Shop -->
-              <a href="shop.php" class="icon-link">
+              <a href="shop.php" class="col-md-2">
                 <svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="47.5" cy="47.5" r="47.5" fill="#006F9A"/>
                   <path d="M13.6049 45.0721C11.4136 39.8033 15.2852 34 20.9916 34H74.0084C79.7148 34 83.5864 39.8033 81.3951 45.0721L70.1657 72.0721C68.9247 75.0558 66.0105 77 62.779 77H32.221C28.9895 77 26.0753 75.0559 24.8343 72.0721L13.6049 45.0721Z" fill="white"/>
@@ -45,8 +44,8 @@
               </a>
 
               <!-- Logo Profil -->
-              <a href="compte.php" class="icon-link">
-                <svg width="95" height="103" viewBox="0 0 95 103" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <a href="compte.php" class="col-md-2">
+                <svg width="auto" height="60" viewBox="0 0 95 103" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="47.5" cy="47.5" r="47.5" fill="#006F9A"/>
                   <ellipse cx="48.426" cy="29.3718" rx="14.3519" ry="15.4487" fill="white"/>
                   <path d="M76.8519 72.6794C76.8519 64.6379 73.857 56.9258 68.5261 51.2396C63.1952 45.5534 55.965 42.3589 48.4259 42.3589C40.8869 42.3589 33.6567 45.5534 28.3258 51.2396C22.9949 56.9258 20 64.6379 20 72.6794L48.4259 72.6794H76.8519Z" fill="white"/>
@@ -64,30 +63,15 @@
               <a href="forum.php" class="link-nav-h">Forum</a>
             </nav>
         </header>
-
-        <div class="row">
-          <div class="col-md-6" id="bio">
-            <h2>Bienvenue à Livry Escalade</h2>
-            <p>Le club qui vous permettra d’apprécier l’art de l’escalade, que ce soit en extérieur ou en intérieur !<br><br>
-              Inscrivez vous sur notre site afin de rejoindre la communauté de Livry escalade</p>
-            <a href="register.php" class="btn btn-light">S'inscrire</a>
-
-          </div>
-
-          <div class="col-md-6" id="calendar">
-            <table>
-              <tr>
-                <th>Calendrier</th>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
+        <aside>
+            <!-- menu burger ? -->
+        </aside>
+        <section>
+            <!-- calendrier des évènements -->
+        </section>
+        <section>
+            <!-- présentation du site -->
+        </section>
         <footer>
 
         </footer>
