@@ -16,7 +16,7 @@
             <!-- titre du club, barre de recherche de post (?), liens vers différentes pages :
             inscription/connexion, contact, voir sur d'autres sites -->
             <div class="row b4-head">
-              <a class="col-md-2" href="index.html"> <img src="Supplies/Logo-LE.gif" id="Logo" alt="Logo club Livry Escalade"> </a>
+              <a class="col-md-2" href="index.php"> <img src="Supplies/Logo-LE.gif" id="Logo" alt="Logo club Livry Escalade"> </a>
 
               <!-- Barre de recherche -->
               <form class="col-md-4 d-flex" role="search">
@@ -58,7 +58,7 @@
 
             <!-- Menu Borgir -->
             <nav>
-              <a href="index.html" class="link-nav-h">Accueil</a>
+              <a href="index.php" class="link-nav-h">Accueil</a>
               <a href="compte.php" class="link-nav-h">Compte</a>
               <a href="event.php" class="link-nav-h">Événements</a>
               <a href="forum.php" class="link-nav-h">Forum</a>

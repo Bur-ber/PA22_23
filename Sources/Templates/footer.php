@@ -1,5 +1,5 @@
     <footer>
-      <a href="FAQ.html" class="link-nav-f">Foire aux Questions</a>
+      <a href="FAQ.php" class="link-nav-f">Foire aux Questions</a>
       <a href="contact.php" class="link-nav-f">Contact</a>
       <a href="event.php" class="link-nav-f">Événements</a>
     </footer>
