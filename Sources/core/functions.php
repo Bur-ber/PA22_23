@@ -20,3 +20,26 @@ function connectDB(){
   }
   return $connection;
 }
+
+function isConnected(){
+
+  if(!empty($_SESSION['email']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
+
+    $connect = connectDB();
+    $queryPrepared = $connect -> prepare('SELECT id FROM ' .PRE_DB. 'user WHERE mail=:email');
+    $queryPrepared -> execute(['email'=> $_SESSION['email']]);
+    $result = $queryPrepared -> fetch();
+
+    if (!empty($result)){
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function redirectIfNotConnected(){
+  if(!isConnected()){
+    header("Location: login.php");
+  }
+}

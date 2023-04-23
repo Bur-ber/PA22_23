@@ -51,7 +51,7 @@ if( isset($_SESSION['errors'])) {
 		<input type="text" name="captcha" required="required" placeholder="captcha">
 	</div>
 
-  <button type="submit" class="btn btn-primary">Page Suivante</button>
+  <button type="submit" class="btn btn-primary">Terminer l'inscription</button>
 </form>
 
 <?php include 'templates/footer.php'; ?>

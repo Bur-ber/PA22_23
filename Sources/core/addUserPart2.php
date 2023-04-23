@@ -33,7 +33,7 @@ if(empty($listOfErrors)){
 // --> Insertion en BDD
 
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "user (address, complement, postal, city) SET (:address, :complement, :postal, :city) WHERE mail=:mail");
+  $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "user SET address=:address, complement=:complement, postal=:postal, city=:city WHERE mail=:mail");
 
 // Start Request
   $queryPrepared -> execute([

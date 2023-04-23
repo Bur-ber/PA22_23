@@ -13,3 +13,15 @@
 
     die("Exploitation faille xss détectée");
   }
+
+  $connection = connectDB();
+  $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "user SET event=:event, shop=:shop WHERE mail=:mail");
+
+  // Start Request
+  $queryPrepared -> execute([
+    "event" => $_POST["event"],
+    "shop" => $_POST["shop"],
+    "mail" => $_SESSION['mail']
+  ]);
+
+  header("Location: ../login.php");

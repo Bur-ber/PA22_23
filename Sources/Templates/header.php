@@ -65,7 +65,16 @@
             <!-- Menu Borgir -->
             <nav>
               <a href="index.php" class="link-nav-h">Accueil</a>
-              <a href="compte.php" class="link-nav-h">Compte</a>
+              <?php if(isConnected()){ ?>
+
+			          <a class="nav-link" href="logout.php">Se deconnecter</a>
+
+  		        <?php } else { ?>
+
+  			          <a class="nav-link" href="register.php">S'inscrire</a>
+  			          <a class="nav-link" href="login.php">Se connecter</a>
+
+  		        <?php } ?>
               <a href="event.php" class="link-nav-h">Événements</a>
               <a href="forum.php" class="link-nav-h">Forum</a>
             </nav>
