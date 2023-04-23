@@ -1,4 +1,4 @@
-<?php include 'Templates/header.php'; ?>
+<?php include 'templates/header.php'; ?>
 
 <div class="row" id="main">
   <div class="col-md-6" id="bio">
@@ -23,4 +23,4 @@
   </div>
 </div>
 
-<?php include ' Templates/footer.php'; ?>
+<?php include 'templates/footer.php'; ?>
