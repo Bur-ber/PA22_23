@@ -33,7 +33,7 @@ if(empty($listOfErrors)){
 // --> Insertion en BDD
 
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "user SET address=:address, complement=:complement, postal=:postal, city=:city WHERE mail=:mail");
+  $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "USER SET address=:address, complement=:complement, postal=:postal, city=:city WHERE mail=:mail");
 
 // Start Request
   $queryPrepared -> execute([
@@ -44,7 +44,7 @@ if(empty($listOfErrors)){
     "mail" => $_SESSION['mail']
   ]);
 
-  header("Location: ../registerPart3.php");
+  header("Location: ../captcha.php");
 
 } else {
 //Si NOK

@@ -1,4 +1,8 @@
-<?php include 'templates/header.php'; ?>
+<?php
+  session_start();
+  require 'core/const.php';
+  require "core/functions.php";
+  include "templates/header.php"; ?>
 
 <div class="row" id="main">
   <div class="col-md-6" id="bio">

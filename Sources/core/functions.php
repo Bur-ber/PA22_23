@@ -23,11 +23,11 @@ function connectDB(){
 
 function isConnected(){
 
-  if(!empty($_SESSION['email']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
+  if(!empty($_SESSION['mail']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
 
     $connect = connectDB();
-    $queryPrepared = $connect -> prepare('SELECT id FROM ' .PRE_DB. 'user WHERE mail=:email');
-    $queryPrepared -> execute(['email'=> $_SESSION['email']]);
+    $queryPrepared = $connect -> prepare('SELECT id FROM ' .PRE_DB. 'USER WHERE mail=:mail');
+    $queryPrepared -> execute(['mail'=> $_SESSION['mail']]);
     $result = $queryPrepared -> fetch();
 
     if (!empty($result)){
@@ -38,8 +38,19 @@ function isConnected(){
   return false;
 }
 
-function redirectIfNotConnected(){
+function redirectIfNotConnected($status){
   if(!isConnected()){
     header("Location: login.php");
+  }
+  redirectIfNotAuthorized($status);
+}
+
+function redirectIfNotAuthorized($status){
+  $queryPrepared = $connect -> prepare('SELECT status FROM ' .PRE_DB. 'USER WHERE mail=:mail');
+  $queryPrepared -> execute(['mail'=> $_SESSION['mail']]);
+  $result = $queryPrepared -> fetch();
+
+  if ($result['id'] < $status){
+    header("Location: index.php");
   }
 }

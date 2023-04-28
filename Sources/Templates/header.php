@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel = "icon" href ="../../Resources/images/Logo-LE.gif" type = "image/x-icon">
+        <link rel = "icon" href ="images/Logo-LE.gif" type = "image/gif">
         <title>
           Livry Escalade
         </title>
@@ -22,7 +22,7 @@
             <!-- titre du club, barre de recherche de post (?), liens vers différentes pages :
             inscription/connexion, contact, voir sur d'autres sites -->
             <div class="row b4-head">
-              <a class="col-md-2" href="index.php"> <img src="Supplies/Logo-LE.gif" id="Logo" alt="Logo club Livry Escalade"> </a>
+              <a class="col-md-2" href="index.php"> <img src="images/Logo-LE.gif" id="Logo" alt="Logo club Livry Escalade"> </a>
 
               <!-- Barre de recherche -->
               <form class="col-md-4 d-flex" role="search">

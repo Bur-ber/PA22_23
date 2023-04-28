@@ -44,7 +44,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
   $listOfErrors[] = "L'email est incorrecte";
 }else{
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("SELECT id FROM " .PRE_DB. "user WHERE mail=:mail");
+  $queryPrepared = $connection -> prepare("SELECT id FROM " .PRE_DB. "USER WHERE mail=:mail");
   $queryPrepared -> execute(["mail" => $_POST["email"]]);
   $result = $queryPrepared -> fetch();
   if (!empty($result)) {
@@ -80,7 +80,7 @@ if(empty($listOfErrors)){
 // --> Insertion en BDD
 
 // Si on arrive pas à se connecter alors on fait un die avec erreur sql
-  $queryPrepared = $connection -> prepare("INSERT INTO " .PRE_DB. "user (firstname, lastname, mail, genre, birthday, pwd) VALUES (:firstname, :lastname, :mail, :gender, :birthday, :pwd)");
+  $queryPrepared = $connection -> prepare("INSERT INTO " .PRE_DB. "USER (firstname, lastname, mail, genre, birthday, pwd) VALUES (:firstname, :lastname, :mail, :gender, :birthday, :pwd)");
 
 // Start Request
   $queryPrepared -> execute([
