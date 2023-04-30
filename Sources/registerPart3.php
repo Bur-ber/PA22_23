@@ -13,11 +13,11 @@ if( isset($_SESSION['image'])) {
 
  <nav aria-label="...">
   <ul class="pagination pagination-lg">
-    <li class="page-item active" aria-current="page">
-      <span class="page-link">1</span>
-    </li>
-    <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
-    <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="register.php">1</a></li>
+    <li class="page-item"><a class="page-link" href="registerPart2.php">2</a></li>
+    <li class="page-item active">
+			<span class="page-link">3</span>
+		</li>
   </ul>
 </nav>
 
@@ -47,17 +47,26 @@ if( isset($_SESSION['image'])) {
 		<div class="row captcha-piece">
     <?php
 		$piecesPath = glob('images/forCaptcha/captchaPieces/*.jpg');
-		foreach ($piecesPath as $piece):
+		foreach ($piecesPath as $index => $piece):
 		?>
 		<div class="col-md-4">
-        <img src="<?php echo $piece; ?>" alt="Captcha piece">
+        <img src="<?php echo $piece; ?>" data-index="<?php echo $index; ?>" alt="Captcha piece">
 			</div>
     <?php endforeach; ?>
 		</div>
 	</div>
 
 	<div class="col-md-4">
-		<div class="captcha-destination">
+		<div class="row captcha-destination">
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
 		</div>
 	</div>
 
@@ -70,5 +79,5 @@ if( isset($_SESSION['image'])) {
 
   <button type="submit" class="btn btn-primary">Terminer l'inscription</button>
 </form>
-
+<script type="text/javascript" src="core/captcha.js"></script>
 <?php include 'templates/footer.php'; ?>
