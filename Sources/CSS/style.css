@@ -151,7 +151,18 @@ footer {
 }
 
 .captcha-piece img{
-    width: 100px;
-    height: 100px;
-    border: 1px solid #ccc;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+}
+
+.captcha-destination{
+  width: 300px;
+  height: 300px;
+}
+
+.captcha-destination div{
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
 }

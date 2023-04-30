@@ -25,11 +25,6 @@ for ($x = 0; $x < $width; $x += $size) {
 
 $piecesPath = 'images/forCaptcha/captchaPieces/';
 
-// Crée le dossier s'il n'existe pas déjà
-if (!file_exists($piecesPath)) {
-    mkdir($piecesPath, 0777, true);
-}
-
 // Boucle à travers les morceaux de l'image
 foreach ($pieces as $piece) {
     // Génère un nom de fichier unique pour chaque morceau
