@@ -9,7 +9,7 @@
   //Récupération des données
   if(count($_POST) != 4
   || empty($_POST["cgu"])
-  || empty($_POST["captcha"]){
+  || empty($_POST["captcha"])){
 
     die("Exploitation faille xss détectée");
   }

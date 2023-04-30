@@ -4,27 +4,30 @@
   require "core/functions.php";
   include "templates/header.php"; ?>
 
-<div class="row" id="main">
-  <div class="col-md-6" id="bio">
-    <h2>Bienvenue à Livry Escalade</h2>
-    <p>Le club qui vous permettra d’apprécier l’art de l’escalade, que ce soit en extérieur ou en intérieur !<br><br>
-      Inscrivez vous sur notre site afin de rejoindre la communauté de Livry escalade</p>
-    <a href="register.php" class="btn btn-light">S'inscrire</a>
+  <div class="row" id="main">
+    <div class="col-md-4" id="bio">
+      <h2>Bienvenue à Livry Escalade</h2>
+      <p>Le club qui vous permettra d’apprécier l’art de l’escalade, que ce soit en extérieur ou en intérieur !<br><br>
+        Inscrivez vous sur notre site afin de rejoindre la communauté de Livry escalade</p>
+      <a href="register.php" class="site-Btn">S'inscrire</a>
 
-  </div>
+    </div>
 
-  <div class="col-md-6" id="calendar">
-    <table>
-      <tr>
-        <th>Calendrier</th>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
+    <div class="col-md-4" id="calendar">
+      <table>
+        <tr>
+          <th>Calendrier</th>
+        </tr>
+        <tr>
+          <td><?php setlocale(LC_TIME, "French");
+            echo strftime("%a %e %B %Y");?>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
   </div>
-</div>
+</body>
 
 <?php include 'templates/footer.php'; ?>
