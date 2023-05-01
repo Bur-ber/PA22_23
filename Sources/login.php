@@ -35,13 +35,14 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
 
   $listOfErrors = [];
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("SELECT pwd FROM " .PRE_DB. "user WHERE mail=:mail");
+  $queryPrepared = $connection -> prepare("SELECT pwd, status FROM " .PRE_DB. "USER WHERE mail=:mail");
   $queryPrepared -> execute(["mail" => $_POST["mail"]]);
   $result = $queryPrepared -> fetch();
 
 
-  if (!empty($result) && password_verify($_POST["pwd"], $result[0])) {
+  if (!empty($result[0]) && password_verify($_POST["pwd"], $result[0])) {
     $_SESSION['mail'] = $_POST['mail'];
+    $_SESSION['status'] = $result[1];
     $_SESSION['login'] = 1;
     header("Location: index.php");
   }else {
