@@ -25,6 +25,17 @@ for ($x = 0; $x < $width; $x += $size) {
 
 $piecesPath = 'images/forCaptcha/captchaPieces/';
 
+if (!file_exists($piecesPath)) {
+    mkdir($piecesPath, 0777, true);
+}else {
+  $piecesPath = glob('images/forCaptcha/captchaPieces/*.jpg');
+  foreach ($piecesPath as $piece){
+    unlink($piece);
+  }
+  rmdir('images/forCaptcha/captchaPieces');
+  mkdir($piecesPath, 0777, true);
+}
+
 // Boucle à travers les morceaux de l'image
 foreach ($pieces as $piece) {
     // Génère un nom de fichier unique pour chaque morceau
@@ -34,7 +45,6 @@ foreach ($pieces as $piece) {
     // Stocke le nom de fichier dans un tableau pour pouvoir le récupérer plus tard
     $filenames[] = $filename;
 }
-
 
 $_SESSION['image'] = $image;
 

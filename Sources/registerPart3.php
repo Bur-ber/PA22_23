@@ -68,6 +68,7 @@ if( isset($_SESSION['image'])) {
 			<div class="col-md-4"></div>
 			<div class="col-md-4"></div>
 		</div>
+  	<input type="hidden" name="images_list" value="">
 	</div>
 
 	<div class="col-md-4">
@@ -79,5 +80,10 @@ if( isset($_SESSION['image'])) {
 
   <button type="submit" class="btn btn-primary">Terminer l'inscription</button>
 </form>
-<script type="text/javascript" src="core/captcha.js"></script>
+<script type="text/javascript" src="core/captcha.js">
+	const imagesListInput = document.querySelector('input[name="images_list"]');
+
+  // Stockage de l'objet JSONifié dans l'input caché
+  imagesListInput.value = JSON.stringify(imagesList);
+</script>
 <?php include 'templates/footer.php'; ?>
