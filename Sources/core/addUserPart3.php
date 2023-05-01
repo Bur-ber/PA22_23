@@ -5,11 +5,11 @@
 
   // Objectif : Insertion du user en BDD
 
-
+print_r($_POST['captcha']);
   //Récupération des données
-  if(count($_POST) != 4
+  if((count($_POST) < 2 && count($_POST) > 4)
   || empty($_POST["cgu"])
-  || empty($_POST["captcha"]){
+  || empty($_POST["captcha"])){
 
     die("Exploitation faille xss détectée");
   }
