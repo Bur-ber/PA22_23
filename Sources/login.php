@@ -7,27 +7,9 @@
 
 <div class="container">
   <h1>Se connecter</h1>
-
 </div>
 
 <?php
-
-echo '<form  action="login.php" method="POST">
-
-        <div class="mb-3">
-          <label for="mail" class="form-label">Votre email</label>
-            <input type="email" name="mail" class="form-control" id="mail">
-        </div>
-
-        <div class="mb-3">
-          <label for="pwd" class="form-label">Votre mot de passe </label>
-            <input type="password" name="pwd" class="form-control" id="pwd">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Se connecter</button>
-      </form>
-';
-
 if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
 
   cleanByTrimAndLow($_POST["mail"]);
@@ -44,14 +26,25 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
     $_SESSION['mail'] = $_POST['mail'];
     $_SESSION['status'] = $result[1];
     $_SESSION['login'] = 1;
-    header("Location: index.php");
+    header("Location: index.php", true);
   }else {
     echo "L'email ou le mot de passe est incorrecte";
   }
 }
-
-
 ?>
 
+<form  action="login.php" method="POST">
+<div class="mb-3">
+  <label for="mail" class="form-label">Votre email</label>
+    <input type="email" name="mail" class="form-control" id="mail">
+</div>
+
+<div class="mb-3">
+  <label for="pwd" class="form-label">Votre mot de passe </label>
+    <input type="password" name="pwd" class="form-control" id="pwd">
+</div>
+
+<button type="submit" class="btn btn-primary">Se connecter</button>
+</form>
 
 <?php include 'templates/footer.php' ?>
