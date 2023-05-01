@@ -14,6 +14,12 @@
     die("Exploitation faille xss détectée");
   }
 
+  $captchaPieces = json_decode($_POST["captcha"]);
+
+  for($i = 0; $i < 9; $i++){
+    echo '<img src="'.$captchaPieces->$i.'" alt="Captcha image">';
+  }
+
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "USER SET event=:event, shop=:shop WHERE mail=:mail");
 
@@ -28,6 +34,5 @@
 	foreach ($piecesPath as $piece){
 		unlink($piece);
 	}
-	rmdir('images/forCaptcha/captchaPieces');
 
   header("Location: ../login.php");

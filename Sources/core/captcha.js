@@ -1,5 +1,6 @@
 const piecesContainer = document.querySelector('.captcha-piece');
 const pieces = piecesContainer.querySelectorAll('img');
+const imageSourcesBySquare = {};
 
 pieces.forEach(piece => {
   piece.addEventListener('mousedown', handleMouseDown);
@@ -89,4 +90,9 @@ function handleDrop(event) {
   img.setAttribute('data-index', piece.getAttribute('data-index'));
   piece.style.display = 'none';
   square.appendChild(img);
+  const squareIndex = Array.from(square.parentNode.children).indexOf(square);
+  if (!imageSourcesBySquare[squareIndex]) {
+    imageSourcesBySquare[squareIndex] = [];
+  }
+  imageSourcesBySquare[squareIndex].push(img.src);
 }

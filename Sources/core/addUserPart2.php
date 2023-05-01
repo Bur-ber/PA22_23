@@ -44,7 +44,6 @@ if(empty($listOfErrors)){
     "mail" => $_SESSION['mail']
   ]);
 
-  repCaptcha();
   header("Location: ../captcha.php");
 
 } else {
