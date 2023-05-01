@@ -52,6 +52,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
   }
 }
 
+
 if(strlen($_POST["pwd"]) < 8 || !preg_match("#[0-9]#", $_POST["pwd"]) || !preg_match("#[a-z]#", $_POST["pwd"]) || !preg_match("#[A-Z]#", $_POST["pwd"])){
   $listOfErrors[] = "Format du mot de passe incorrect";
 }
@@ -76,13 +77,13 @@ if (!checkdate($dateExploded[1], $dateExploded[2], $dateExploded[0])){ // Vérif
 
 
 if(empty($listOfErrors)){
-//Si OK
-// --> Insertion en BDD
+  //Si OK
+  // --> Insertion en BDD
 
-// Si on arrive pas à se connecter alors on fait un die avec erreur sql
+  // Si on arrive pas à se connecter alors on fait un die avec erreur sql
   $queryPrepared = $connection -> prepare("INSERT INTO " .PRE_DB. "USER (firstname, lastname, mail, genre, birthday, pwd) VALUES (:firstname, :lastname, :mail, :gender, :birthday, :pwd)");
 
-// Start Request
+  // Start Request
   $queryPrepared -> execute([
     "firstname" => $_POST["firstname"],
     "lastname" => $_POST["lastname"],
@@ -92,8 +93,8 @@ if(empty($listOfErrors)){
     "pwd" => password_hash($_POST["pwd"], PASSWORD_DEFAULT)
   ]);
 
-// header login.php
-$_SESSION['mail'] = $_POST['mail']
+  // header login.php
+  $_SESSION['mail'] = $_POST['mail'];
   header("Location: ../registerPart2.php");
 
 } else {

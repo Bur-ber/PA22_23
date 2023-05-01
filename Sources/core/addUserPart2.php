@@ -10,7 +10,7 @@ require 'const.php';
 if(count($_POST) != 4
 || empty($_POST["address"])
 || empty($_POST["postal"])
-|| empty($_POST["city"]){
+|| empty($_POST["city"])){
 
   die("Exploitation faille xss détectée");
 }

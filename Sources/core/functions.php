@@ -54,3 +54,20 @@ function redirectIfNotAuthorized($status){
     header("Location: index.php");
   }
 }
+<<<<<<< HEAD
+// Crée le dossier s'il n'existe pas déjà
+function repCaptcha(){  
+  $piecesPath = 'images/forCaptcha/captchaPieces';
+  if (!file_exists($piecesPath)) {
+      mkdir($piecesPath, 0777, true);
+  }else {
+    $piecesPath = glob('images/forCaptcha/captchaPieces/*.jpg');
+  	foreach ($piecesPath as $piece){
+  		unlink($piece);
+  	}
+  	rmdir('images/forCaptcha/captchaPieces');
+    mkdir($piecesPath, 0777, true);
+  }
+}
+=======
+>>>>>>> 19e4fe8336e6d9526948b316c4801bff31f5e88b
