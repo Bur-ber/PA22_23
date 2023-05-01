@@ -54,6 +54,7 @@ function redirectIfNotAuthorized($status){
     header("Location: index.php");
   }
 }
+<<<<<<< HEAD
 // Crée le dossier s'il n'existe pas déjà
 function repCaptcha(){  
   $piecesPath = 'images/forCaptcha/captchaPieces';
@@ -68,3 +69,5 @@ function repCaptcha(){
     mkdir($piecesPath, 0777, true);
   }
 }
+=======
+>>>>>>> 19e4fe8336e6d9526948b316c4801bff31f5e88b
