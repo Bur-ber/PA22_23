@@ -54,8 +54,8 @@ function redirectIfNotAuthorized($status){
     header("Location: index.php");
   }
 }
-
-function repCaptcha(){  // Crée le dossier s'il n'existe pas déjà
+// Crée le dossier s'il n'existe pas déjà
+function repCaptcha(){  
   $piecesPath = 'images/forCaptcha/captchaPieces';
   if (!file_exists($piecesPath)) {
       mkdir($piecesPath, 0777, true);

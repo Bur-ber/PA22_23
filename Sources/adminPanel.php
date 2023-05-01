@@ -8,7 +8,7 @@
 ?>
 
 
-<h1>Les utilisateurs</h1>
+<h1>Panel administrateur</h1>
 
 <?php
 
@@ -51,7 +51,7 @@
 			echo "<td>".$user["status"]."</td>";
 			echo "<td>".$user["created_at"]."</td>";
 			echo "<td>".$user["updated_at"]."</td>";
-			echo "<td><a class='btn btn-danger' href='core/userDel.php?id=".$user["id"]."'>Supprimer</a></td>";
+			echo "<td><a class='btn btn-danger' href='core/delUsers.php?id=".$user["id"]."'>Supprimer</a></td>";
 			echo "</tr>";
 		}
 		?>

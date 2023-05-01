@@ -52,6 +52,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
   }
 }
 
+
 if(strlen($_POST["pwd"]) < 8 || !preg_match("#[0-9]#", $_POST["pwd"]) || !preg_match("#[a-z]#", $_POST["pwd"]) || !preg_match("#[A-Z]#", $_POST["pwd"])){
   $listOfErrors[] = "Format du mot de passe incorrect";
 }
@@ -93,7 +94,7 @@ if(empty($listOfErrors)){
   ]);
 
   // header login.php
-  $_SESSION['mail'] = $_POST['mail']
+  $_SESSION['mail'] = $_POST['mail'];
   header("Location: ../registerPart2.php");
 
 } else {
