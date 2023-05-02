@@ -19,7 +19,7 @@
   if(!empty($_POST['image']) && !empty($_POST['name']) && !empty($_POST['brand']) && !empty($_POST['description']) && !empty($_POST['price']) && !empty($_POST['instock'])){
 
     cleanByTrimAndUcword($_POST['name']);
-    cleanByTrimAndUcword($_POST['brand']);
+    cleanByTrimAndUpper($_POST['brand']);
 
     if(gettype($_POST['price']) == 'double'){ // SI le prix est un double, on suppose qu'il est en € et on le convertit en centimes
       $price = intval($_POST['price'] * 100);

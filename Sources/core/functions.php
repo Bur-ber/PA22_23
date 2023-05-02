@@ -8,6 +8,10 @@ function cleanByTrimAndUcword(&$name){
   $name = ucwords(strtolower(trim($name)));
 }
 
+function cleanByTrimAndUpper(&$name){
+  $name = strtoupper(trim($name));
+}
+
 function cleanByTrimAndLow(&$string){
   $string = strtolower(trim($string));
 }
