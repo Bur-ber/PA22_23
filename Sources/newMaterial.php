@@ -5,7 +5,7 @@
   include 'templates/header.php';
 	$statusRequired = 3;
 
-	//redirectIfNotConnected($statusRequired);
+	redirectIfNotConnected($statusRequired);
 ?>
 
 
