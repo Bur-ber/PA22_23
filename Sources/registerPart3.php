@@ -47,6 +47,9 @@ if( isset($_SESSION['image'])) {
 		<div class="row captcha-piece">
     <?php
 		$piecesPath = glob('images/forCaptcha/captchaPieces/*.jpg');
+		if (count($piecesPath) != 9) {
+			header("Location: captcha.php");
+		}
 		foreach ($piecesPath as $index => $piece):
 		?>
 		<div class="col-md-4">

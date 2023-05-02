@@ -31,9 +31,11 @@
 
     <?php } ?>
 
-    <?php if(isConnected() && $_SESSION['statut'] > 1){ ?>
+    <?php if(isConnected() && $_SESSION['statut'] > 2){ ?>
       <div class="addMaterial">
-        <a href="addMaterial.php"></a>
+        <a href="newMaterial.php">
+          <span>Ajouter un produit</span>
+        </a>
       </div>
 
     <?php } ?>
