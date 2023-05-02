@@ -21,7 +21,7 @@ if( isset($_SESSION['image'])) {
   </ul>
 </nav>
 
-<form action="core/addUserPart3.php" method="POST">
+<form action="core/addUserPart3.php" method="POST" id="lastForm">
 
 <div class="row justify-content-center">
 
@@ -68,7 +68,7 @@ if( isset($_SESSION['image'])) {
 			<div class="col-md-4"></div>
 			<div class="col-md-4"></div>
 		</div>
-  	<input type="hidden" name="images_list" value="">
+  	<input type="hidden" name="listPieces" value="">
 	</div>
 
 	<div class="col-md-4">
@@ -80,10 +80,44 @@ if( isset($_SESSION['image'])) {
 
   <button type="submit" class="btn btn-primary">Terminer l'inscription</button>
 </form>
-<script type="text/javascript" src="core/captcha.js">
-	const imagesListInput = document.querySelector('input[name="images_list"]');
+<script type="text/javascript" src="core/captcha.js"></script>
+<script type="text/javascript">
+	var form = document.querySelector("#lastForm");
 
-  // Stockage de l'objet JSONifié dans l'input caché
-  imagesListInput.value = JSON.stringify(imagesList);
+	// Ecouteur d'événement pour la soumission du formulaire
+	form.addEventListener("submit", function(event) {
+	// Annulation de la soumission par défaut
+		event.preventDefault();
+
+		// Récupération des données du formulaire
+		var data = new FormData(form);
+
+		// Récupération des divs contenant les images
+    var destinationDivs = document.querySelectorAll('.captcha-destination div');
+
+    // Création du tableau pour stocker les données des images
+    var imagesList = [];
+
+    // Boucle sur les divs de destination
+    destinationDivs.forEach(function(destinationDiv) {
+        // Récupération de l'index de l'image
+        var index = destinationDiv.dataset.index;
+
+        // Récupération de la source de l'image
+        var imageSrc = destinationDiv.querySelector('img').src;
+
+        // Stockage des données de l'image dans le tableau
+        imagesList.push({ index: index, src: imageSrc });
+    });
+
+		// Récupération de l'input caché pour stocker les données JSON
+		var imagesListInput = document.querySelector('input[name="listPieces"]');
+
+		// Stockage de l'objet JSONifié dans l'input caché
+		imagesListInput.value = JSON.stringify(imagesList);
+
+		// Soumission manuelle du formulaire
+		form.submit();
+	});
 </script>
 <?php include 'templates/footer.php'; ?>

@@ -11,8 +11,8 @@ $captchaPieces = []; // Tableau pour stocker les morceaux de l'image
 $img = imagecreatefromjpeg($image);
 
 // Récupère les dimensions de l'image
-$width = imagesx($img);
-$height = imagesy($img);
+$width = 300;
+$height = 300;
 
 // Découpe l'image en plusieurs carrés et les stocke dans le tableau $pieces
 for ($x = 0; $x < $width; $x += $size) {
@@ -46,6 +46,7 @@ foreach ($pieces as $piece) {
     $filenames[] = $filename;
 }
 
+$_SESSION['rightOrder'] = serialize($filenames);
 $_SESSION['image'] = $image;
 
 header("Location: registerPart3.php");

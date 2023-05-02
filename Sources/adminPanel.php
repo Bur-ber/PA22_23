@@ -2,9 +2,10 @@
 	session_start();
 	require "core/const.php";
 	require "core/functions.php";
-	include "template/header.php"; 
+	include "template/header.php";
+	$statusRequired = 4;
 
-	redirectIfNotConnected();
+	redirectIfNotConnected($statusRequired);
 ?>
 
 
@@ -13,8 +14,8 @@
 <?php
 
 	$connect = connectDB();
-	$query = $connect->query("SELECT * FROM ".PRE_DB."_user ");
-	$listOfUsers = $query->fetchAll();
+	$query = $connect -> query("SELECT * FROM " .PRE_DB. "USER");
+	$listOfUsers = $query -> fetchAll();
 
 ?>
 
@@ -45,7 +46,7 @@
 			echo "<td>".$user["gender"]."</td>";
 			echo "<td>".$user["firstname"]."</td>";
 			echo "<td>".$user["lastname"]."</td>";
-			echo "<td>".$user["email"]."</td>";
+			echo "<td>".$user["mail"]."</td>";
 			echo "<td>".$user["country"]."</td>";
 			echo "<td>".$user["birthday"]."</td>";
 			echo "<td>".$user["status"]."</td>";
@@ -55,7 +56,7 @@
 			echo "</tr>";
 		}
 		?>
-		
+
 	</tbody>
 </table>
 
