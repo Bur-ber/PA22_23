@@ -26,7 +26,7 @@ function isConnected(){
   if(!empty($_SESSION['mail']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
 
     $connect = connectDB();
-    $queryPrepared = $connect -> prepare('SELECT id FROM ' .PRE_DB. 'USER WHERE mail=:mail');
+    $queryPrepared = $connect -> prepare('SELECT id FROM '.PRE_DB.'USER WHERE mail=:mail');
     $queryPrepared -> execute(['mail'=> $_SESSION['mail']]);
     $result = $queryPrepared -> fetch();
 

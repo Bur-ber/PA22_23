@@ -1,5 +1,5 @@
 <?php
-session_start(); // Démarre une sassion en générant un ID
+session_start(); // Démarre une session en générant un ID
 require 'functions.php';
 require 'const.php';
 
@@ -23,13 +23,13 @@ if(count($_POST) != 7
 
 cleanByTrimAndUcword($_POST["firstname"]);
 cleanLastname($_POST["lastname"]);
-cleanByTrimAndLow($_POST["email"]);
+cleanByTrimAndLow($_POST["mail"]);
 
 $listOfErrors = [];
 //Vérification des données
 $listOfGenders = [0, 1, 2];
 if (!in_array($_POST["gender"], $listOfGenders)){
-  $listOfErrors[] = "Ce genre n'existe pas/plus";
+  $listOfErrors[] = "Ce genre n'existe pas";
 }
 
 if (strlen($_POST["firstname"]) < 2){
@@ -40,15 +40,15 @@ if (strlen($_POST["lastname"]) < 2){
   $listOfErrors[] = "Le nom doit faire plus de 2 charactères";
 }
 
-if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
-  $listOfErrors[] = "L'email est incorrecte";
+if (!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)){
+  $listOfErrors[] = "L'email est incorrect";
 }else{
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("SELECT id FROM " .PRE_DB. "USER WHERE mail=:mail");
-  $queryPrepared -> execute(["mail" => $_POST["email"]]);
+  $queryPrepared = $connection -> prepare("SELECT id FROM ".PRE_DB."user WHERE mail=:mail");
+  $queryPrepared -> execute(["mail" => $_POST["mail"]]);
   $result = $queryPrepared -> fetch();
   if (!empty($result)) {
-    $listOfErrors[] = "L'email est déjà utilisée";
+    $listOfErrors[] = "L'email est déjà utilisé";
   }
 }
 
@@ -79,9 +79,9 @@ if (!checkdate($dateExploded[1], $dateExploded[2], $dateExploded[0])){ // Vérif
 if(empty($listOfErrors)){
   //Si OK
   // --> Insertion en BDD
-
   // Si on arrive pas à se connecter alors on fait un die avec erreur sql
-  $queryPrepared = $connection -> prepare("INSERT INTO " .PRE_DB. "USER (firstname, lastname, mail, genre, birthday, pwd) VALUES (:firstname, :lastname, :mail, :gender, :birthday, :pwd)");
+  $queryPrepared = $connection -> prepare("INSERT INTO ".PRE_DB."user (firstname, lastname, mail, gender, birthday, pwd) 
+  VALUES (:firstname, :lastname, :mail, :gender, :birthday, :pwd)");
 
   // Start Request
   $queryPrepared -> execute([
