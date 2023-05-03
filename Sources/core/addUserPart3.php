@@ -5,34 +5,51 @@
 
   // Objectif : Insertion du user en BDD
 
-print_r($_POST['captcha']);
   //Récupération des données
-  if((count($_POST) < 2 && count($_POST) > 4)
+  if(count($_POST) < 2 || count($_POST) > 4
   || empty($_POST["cgu"])
-  || empty($_POST["captcha"])){
+  || empty($_POST["listPieces"])){
 
     die("Exploitation faille xss détectée");
   }
 
-  $captchaPieces = json_decode($_POST["captcha"]);
+  $captchaPieces = json_decode($_POST["listPieces"]);
+  $rightOrder = unserialize($_SESSION['rightOrder']);
 
-  for($i = 0; $i < 9; $i++){
-    echo '<img src="'.$captchaPieces->$i.'" alt="Captcha image">';
+  $samePath = 0;
+  foreach ($rightOrder as $index => $value) {
+    if ($index - 3 < 0) {
+      if(strcmp("http://193.70.41.26/images/forCaptcha/captchaPieces/" . $value, $captchaPieces[$index * 3]->src) == 0){
+        $samePath++;
+      }
+    }else if ($index - 6 < 0){
+      if(strcmp("http://193.70.41.26/images/forCaptcha/captchaPieces/" . $value, $captchaPieces[(($index * 3) % 9) + 1]->src) == 0){
+        $samePath++;
+      }
+    }else {
+      if(strcmp("http://193.70.41.26/images/forCaptcha/captchaPieces/" . $value, $captchaPieces[(($index * 3) % 9) + 2]->src) == 0){
+        $samePath++;
+      }
+    }
   }
 
-  $connection = connectDB();
-  $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "USER SET event=:event, shop=:shop WHERE mail=:mail");
 
-  // Start Request
-  $queryPrepared -> execute([
-    "event" => $_POST["event"],
-    "shop" => $_POST["shop"],
-    "mail" => $_SESSION['mail']
-  ]);
+  if ($samePath == 9) {
+    $connection = connectDB();
+    $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "USER SET event=:event, shop=:shop WHERE mail=:mail");
 
-	$piecesPath = glob('images/forCaptcha/captchaPieces/*.jpg');
-	foreach ($piecesPath as $piece){
-		unlink($piece);
-	}
+    // Start Request
+    $queryPrepared -> execute([
+      "event" => $_POST["event"],
+      "shop" => $_POST["shop"],
+      "mail" => $_SESSION['mail']
+    ]);
 
-  header("Location: ../login.php");
+    $piecesPath = glob('images/forCaptcha/captchaPieces/*.jpg');
+    foreach ($piecesPath as $piece){
+      unlink($piece);
+    }
+    header("Location: ../login.php");
+  } else {
+    header("Location: ../captcha.php");
+  }

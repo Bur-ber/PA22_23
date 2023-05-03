@@ -11,8 +11,8 @@ $captchaPieces = []; // Tableau pour stocker les morceaux de l'image
 $img = imagecreatefromjpeg($image);
 
 // Récupère les dimensions de l'image
-$width = imagesx($img);
-$height = imagesy($img);
+$width = 300;
+$height = 300;
 
 // Découpe l'image en plusieurs carrés et les stocke dans le tableau $pieces
 for ($x = 0; $x < $width; $x += $size) {
@@ -29,23 +29,22 @@ if (!file_exists($piecesPath)) {
     mkdir($piecesPath, 0777, true);
 }else {
   $piecesPath = glob('images/forCaptcha/captchaPieces/*.jpg');
-  foreach ($piecesPath as $piece){
-    unlink($piece);
+  foreach ($piecesPath as $pieceInRep){
+    unlink($pieceInRep);
   }
-  rmdir('images/forCaptcha/captchaPieces');
-  mkdir($piecesPath, 0777, true);
 }
 
 // Boucle à travers les morceaux de l'image
 foreach ($pieces as $piece) {
     // Génère un nom de fichier unique pour chaque morceau
-    $filename = 'captcha_piece_' . bin2hex(random_bytes(5)) . '.jpg';
+    $filename = 'captcha_piece_' . bin2hex(random_bytes(5)) . '.jpg'; // bin2hex(random_bytes(5)) permet de générer une chaine aléatoire, pas besoin de shuffle comme ça :P
     // Enregistre le morceau en tant que fichier image dans le dossier
     imagejpeg($piece, $piecesPath . $filename);
     // Stocke le nom de fichier dans un tableau pour pouvoir le récupérer plus tard
     $filenames[] = $filename;
 }
 
+$_SESSION['rightOrder'] = serialize($filenames);
 $_SESSION['image'] = $image;
 
 header("Location: registerPart3.php");
