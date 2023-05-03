@@ -18,15 +18,18 @@
       $path = $queryForRow -> fetch();
       ?>
 
+
       <div class="material">
-        <div class="image">
-          <img src="<?php echo $path[0]; ?>" alt="<?php echo $path[1]; ?>" max-height="269px" max-width="269px">
-        </div>
-        <div class="description">
-          <h4><?php echo $row['name']; ?></h4>
-          <h5><?php echo ($row['price']/100); ?>€/Unité</h5><br>
-          <h5>En stock :<?php echo $row['price']; ?></h5>
-        </div>
+        <a href="material.php?id=<?php echo $row['id']; ?>">
+          <div class="image">
+            <img src="<?php echo $path[0]; ?>" alt="<?php echo $path[1]; ?>" max-height="269px" max-width="269px">
+          </div>
+          <div class="description">
+            <h4><?php echo $row['name']; ?></h4>
+            <h5><?php echo ($row['price']/100); ?>€/Unité</h5><br>
+            <h5>En stock :<?php echo $row['instock']; ?></h5>
+          </div>
+        </a>
       </div>
 
     <?php } ?>
