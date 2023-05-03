@@ -2,22 +2,18 @@
 	session_start();
 	require "core/const.php";
 	require "core/functions.php";
-	include "template/header.php"; 
+	include "templates/header.php"; 
 
 	redirectIfNotConnected();
 ?>
 
-
 <h1>Panel administrateur</h1>
 
 <?php
-
 	$connect = connectDB();
 	$query = $connect->query("SELECT * FROM ".PRE_DB."_user ");
 	$listOfUsers = $query->fetchAll();
-
 ?>
-
 
 <table class="table">
 	<thead>
@@ -29,7 +25,7 @@
 			<th>Email</th>
 			<th>Country</th>
 			<th>Birthday</th>
-			<th>Status</th>
+			<th>Statut</th>
 			<th>Ajout</th>
 			<th>Modification</th>
 			<th>Actions</th>
@@ -38,7 +34,6 @@
 	<tbody>
 
 		<?php
-
 		foreach($listOfUsers as $user){
 			echo "<tr>";
 			echo "<td>".$user["id"]."</td>";

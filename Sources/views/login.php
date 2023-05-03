@@ -26,9 +26,10 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
     $_SESSION['mail'] = $_POST['mail'];
     $_SESSION['status'] = $result[1];
     $_SESSION['login'] = 1;
-    header("Location: index.php", true);
-  }else {
-    echo "L'email ou le mot de passe est incorrecte";
+    header("Location: index.php");
+    exit;
+  } else {
+    echo "L'email ou le mot de passe est incorrect";
   }
 }
 ?>

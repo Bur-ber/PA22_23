@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel = "icon" href ="images/Logo-LE.gif" type = "image/gif">
+        <link rel = "icon" href ="../../images/Logo-LE.gif" type = "image/gif">
         <title>
           Livry Escalade
         </title>
@@ -65,7 +65,7 @@
             <!-- Menu Borgir -->
             <nav>
               <a href="index.php" class="link-nav-h">Accueil</a>
-              <?php if(isConnected() && $_SESSION['status']==1){ ?>
+              <?php if(isConnected() && $_SESSION['status']==2){ ?>
 
 			          <a class="nav-link" href="logout.php">Se déconnecter</a>
                 <a class="nav-link" href="adminPanel.php">Panel Admin</a>

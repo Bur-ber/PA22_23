@@ -2,7 +2,8 @@
   session_start();
   require 'core/const.php';
   require "core/functions.php";
-  include "templates/header.php"; ?>
+  include "views/templates/header.php"; 
+  ?>
 
   <div class="row" id="main">
     <div class="col-md-4" id="bio">
@@ -19,8 +20,12 @@
           <th>Calendrier</th>
         </tr>
         <tr>
-          <td><?php setlocale(LC_TIME, "French");
-            echo strftime("%a %e %B %Y");?>
+          <td><?php 
+            $fmt = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
+            $fmt->setPattern('dd MMMM YYYY');
+            echo $fmt->format(new DateTime() ); 
+
+           ?>
           </td>
           <td></td>
           <td></td>
@@ -30,4 +35,4 @@
   </div>
 </body>
 
-<?php include 'templates/footer.php'; ?>
+<?php include 'views/templates/footer.php'; ?>

@@ -21,8 +21,8 @@ function connectDB(){
   return $connection;
 }
 
-function isConnected(){
-
+function isConnected():bool
+{
   if(!empty($_SESSION['mail']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
 
     $connect = connectDB();
@@ -38,21 +38,24 @@ function isConnected(){
   return false;
 }
 
-function redirectIfNotConnected($status){
+function redirectIfNotConnected($status)
+{
   if(!isConnected()){
     header("Location: login.php");
   }
   redirectIfNotAuthorized($status);
 }
 
-function redirectIfNotAuthorized($status){
+function redirectIfNotAuthorized($status)
+{
   $queryPrepared = $connect -> prepare('SELECT status FROM ' .PRE_DB. 'USER WHERE mail=:mail');
   $queryPrepared -> execute(['mail'=> $_SESSION['mail']]);
   $result = $queryPrepared -> fetch();
-
-  if ($result['id'] < $status){
-    header("Location: index.php");
-  }
+  echo $result;
+  
+  // if ($result['id'] < $status){
+  //   header("Location: index.php");
+  // }
 }
 // Crée le dossier s'il n'existe pas déjà
 function repCaptcha(){  
