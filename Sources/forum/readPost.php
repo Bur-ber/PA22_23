@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php sscanf($post['last_answered'], "%4s-%2s-%2s %2s:%2s:%2s", $annee, $mois, $jour, $heure, $minute, $seconde); ?>
+            <?php sscanf($post['created_at'], "%4s-%2s-%2s %2s:%2s:%2s", $annee, $mois, $jour, $heure, $minute, $seconde); ?>
             <tr>
                 <td><?= $post['mail'] ?></td>
                 <td><?= $jour , '-' , $mois , '-' , $annee , ' ' , $heure , ':' , $minute ?></td>
@@ -43,7 +43,7 @@
                 <a href="/edit.php">Editer le commentaire</a>
             <?php } ?>
                 <p><?= $answer['author']; ?></p>
-                <p><?= $answer['answerDate']?></p>
+                <p><?= $answer['commented_at']?></p>
                 <p><?= $answer['message']; ?></p>
            </div>
 

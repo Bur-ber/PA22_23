@@ -11,7 +11,7 @@
   $listQuantity = unserialize($_SESSION['listQuantity']);
 
 
-  if(gettype($listID == 'array'){ // Si listID est un tableau ça vient du panier
+  if(gettype($listID == 'array')){ // Si listID est un tableau ça vient du panier
     if (count($listID) !== count($listQuantity)) {
       $_SESSION['error'] = "La quantité d'ID matériel est différent de la quantité de demandes";
       unset($_SESSION['listID']);

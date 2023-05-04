@@ -69,7 +69,7 @@
             <!-- Menu Borgir -->
             <nav>
               <a href="index.php" class="link-nav-h">Accueil</a>
-              <?php if(isConnected() && $_SESSION['status'] == 1){ ?>
+              <?php if(isConnected() && is_admin()){ ?>
 
                 <a class="nav-link" href="cart.php">Panier</a>
                 <a class="nav-link" href="logout.php">Se déconnecter</a>
