@@ -22,13 +22,13 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
   $result = $queryPrepared -> fetch();
 
 
-  if (!empty($result[0]) && password_verify($_POST["pwd"], $result[0])) {
-    if ($result != 0) {
+  if (!empty($result['pwd']) && password_verify($_POST["pwd"], $result['pwd'])) {
+    if ($result['status'] != 0) {
       $_SESSION['mail'] = $_POST['mail'];
       $_SESSION['status'] = $result['status'];
       $_SESSION['id'] = $result['id'];
       $_SESSION['login'] = 1;
-      header("Location: index.php", true);
+      header("Location: index.php");
     }else {
       echo "Vous avez été banni, vous ne pouvez plus vous connecter";
     }

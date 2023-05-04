@@ -43,7 +43,7 @@
 
     <?php } ?>
 
-    <?php if(isConnected() && $_SESSION['statut'] > 2){ ?>
+    <?php if(isConnected() && $_SESSION['status'] > 2){ ?>
       <div class="addMaterial">
         <a href="newMaterial.php">
           <span>Ajouter un produit</span>

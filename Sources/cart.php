@@ -42,8 +42,8 @@ if (!empty($result)) {
 
     <div class="info-material">
       <h4><?php echo $resultMaterial['name']; ?></h4>
-      <h5>Quantité demandée :<?php echo $result['quantity']; ?></h5>
-      <h5>Total<?php echo ($resultMaterial['price'] * $result['quantity'] / 100); ?>€</h5><br>
+      <h5>Quantité demandée :<?php echo $material['quantity']; ?></h5>
+      <h5>Total <?php echo ($resultMaterial['price'] * $material['quantity'] / 100); ?>€</h5><br>
     </div>
   </div>
 
