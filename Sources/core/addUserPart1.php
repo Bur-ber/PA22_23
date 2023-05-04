@@ -80,7 +80,7 @@ if(empty($listOfErrors)){
   //Si OK
   // --> Insertion en BDD
   // Si on arrive pas à se connecter alors on fait un die avec erreur sql
-  $queryPrepared = $connection -> prepare("INSERT INTO ".PRE_DB."user (firstname, lastname, mail, gender, birthday, pwd, status) 
+  $queryPrepared = $connection -> prepare("INSERT INTO ".PRE_DB."user (firstname, lastname, mail, gender, birthday, pwd, status)
   VALUES (:firstname, :lastname, :mail, :gender, :birthday, :pwd, :status)");
 
   // Start Request
@@ -91,7 +91,7 @@ if(empty($listOfErrors)){
     "gender" => $_POST["gender"],
     "birthday" => $_POST["birthday"],
     "pwd" => password_hash($_POST["pwd"], PASSWORD_DEFAULT),
-    "status" => 2
+    "status" => 1
   ]);
 
   // header login.php
