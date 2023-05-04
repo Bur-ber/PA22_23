@@ -2,13 +2,11 @@
   session_start();
   require 'const.php';
   require 'functions.php';
-  $statusRequired = 1;
 
   // Verifier que l'id users existe et les 2 get sont présents
-  redirectIfNotConnected($statusRequired)
 
 
-  if ((empty($_GET['idMaterial']) || gettype($_GET['idMaterial']) != 'integer') || (empty($_GET['quantity'] || gettype($_GET['quantity']) != 'integer'))) {
+  if (empty($_GET['idMaterial']) || empty($_GET['quantity'])) {
     $_SESSION['error'] = "Une erreur s'est glissée quelque part";
     header("Location: ../shop.php");
   }elseif ($_GET['idMaterial'] <= 0 || $_GET['quantity'] <= 0) {
@@ -19,7 +17,9 @@
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("INSERT INTO " .PRE_DB. "CART(material, user, quantity) VALUES (:material, :user, :quantity)");
   $queryPrepared -> execute([
-    "material" => $_GET['idMaterial'],
+    "material" => intval($_GET['idMaterial']),
     "user" => $_SESSION['id'],
-    "quantity" => $_GET['quantity']
+    "quantity" => intval($_GET['quantity'])
   ]);
+
+  header("Location: ../shop.php");

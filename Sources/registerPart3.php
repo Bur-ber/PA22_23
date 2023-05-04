@@ -84,7 +84,7 @@ if( isset($_SESSION['image'])) {
   <button type="submit" class="btn btn-primary">Terminer l'inscription</button>
 </form>
 <script type="text/javascript" src="core/captcha.js"></script>
-<script type="text/javascript">
+<script>
 	var form = document.querySelector("#lastForm");
 
 	// Ecouteur d'événement pour la soumission du formulaire

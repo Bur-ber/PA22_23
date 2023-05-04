@@ -4,14 +4,14 @@
   require 'functions.php';
 
   if (empty($_SESSION['listID']) || empty($_SESSION['listQuantity'])) {
-    header("Location: ../shop.php")
+    header("Location: ../shop.php");
   }
 
   $listID = unserialize($_SESSION['listID']);
   $listQuantity = unserialize($_SESSION['listQuantity']);
 
 
-  if(gettype($listID == 'array')){ // Si listID est un tableau ça vient du panier
+  if(gettype($listID) == 'array'){ // Si listID est un tableau ça vient du panier
     if (count($listID) !== count($listQuantity)) {
       $_SESSION['error'] = "La quantité d'ID matériel est différent de la quantité de demandes";
       unset($_SESSION['listID']);
@@ -40,7 +40,7 @@
       $queryDeleteFrCart = $connection -> prepare("DELETE FROM" .PRE_DB. "CART WHERE material=:material AND user=:user");
       $queryDeleteFrCart -> execute([
         "material" => $ID,
-        "id" => $_SESSION['id']
+        "user" => $_SESSION['id']
       ]);
 
       $queryAddBuy = $connection -> prepare("INSERT INTO" .PRE_DB. "BUY(user, material, quantity, date) VALUES (:user, :material, :quantity)");

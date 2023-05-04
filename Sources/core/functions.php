@@ -31,7 +31,7 @@ function isConnected(){
 
     $connect = connectDB();
     $queryPrepared = $connect -> prepare('SELECT id FROM '.PRE_DB.'USER WHERE id=:id');
-    $queryPrepared -> execute(['id'=> $_SESSION['id']]);
+    $queryPrepared -> execute(['id' => $_SESSION['id']]);
     $result = $queryPrepared -> fetch();
 
     if (!empty($result)){
@@ -51,12 +51,7 @@ function redirectIfNotConnected($status)
 }
 
 function redirectIfNotAuthorized($status){
-  $connect = connectDB();
-  $queryPrepared = $connect -> prepare('SELECT status FROM ' .PRE_DB. 'USER WHERE id=:id');
-  $queryPrepared -> execute(['id'=> $_SESSION['id']]);
-  $result = $queryPrepared -> fetch();
-
-  if ($result['status'] < $status){
+  if ($_SESSION['status'] < $status){
     header("Location: index.php");
   }
 }
