@@ -25,9 +25,9 @@ function connectDB(){
   return $connection;
 }
 
-function isConnected(){
-
-  if(!empty($_SESSION['id']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
+function isConnected():boolval
+{
+  if(!empty($_SESSION['mail']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
 
     $connect = connectDB();
     $queryPrepared = $connect -> prepare('SELECT id FROM '.PRE_DB.'USER WHERE id=:id');
