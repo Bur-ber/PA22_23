@@ -25,7 +25,7 @@ function connectDB(){
   return $connection;
 }
 
-function isConnected():boolval
+function isConnected():bool
 {
   if(!empty($_SESSION['mail']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
 
