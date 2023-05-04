@@ -65,10 +65,10 @@
             <!-- Menu Borgir -->
             <nav>
               <a href="index.php" class="link-nav-h">Accueil</a>
-              <?php if(isConnected() && $_SESSION['status']==2){ ?>
+              <?php if(isConnected() && $_SESSION['status']==4){ ?>
 
 			          <a class="nav-link" href="logout.php">Se déconnecter</a>
-                <a class="nav-link" href="adminPanel.php">Panel Admin</a>
+                <a class="nav-link" href="admin/adminPanel.php">Panel Admin</a>
 
   		        <?php } elseif(isConnected()){ ?>
 
@@ -81,6 +81,6 @@
 
   		        <?php } ?>
               <a href="event.php" class="link-nav-h">Événements</a>
-              <a href="forum.php" class="link-nav-h">Forum</a>
+              <a href="forumIndex.php" class="link-nav-h">Forum</a>
             </nav>
         </header>

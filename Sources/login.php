@@ -1,8 +1,8 @@
 <?php
   session_start();
-  require 'core/const.php';
-  require 'core/functions.php';
-  include 'templates/header.php';
+  require '../core/const.php';
+  require '../core/functions.php';
+  include  'Templates/header.php';
 ?>
 
 <div class="container">

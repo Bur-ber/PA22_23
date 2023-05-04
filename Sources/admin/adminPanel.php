@@ -20,13 +20,13 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>Id</th>
+			<th>ID</th>
 			<th>Genre</th>
 			<th>Prénom</th>
 			<th>Nom</th>
 			<th>Email</th>
-			<th>Country</th>
-			<th>Birthday</th>
+			<th>Pays</th>
+			<th>Date de naissance</th>
 			<th>Statut</th>
 			<th>Ajout</th>
 			<th>Modification</th>

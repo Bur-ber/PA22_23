@@ -1,8 +1,10 @@
 <?php
   session_start();
   require 'core/const.php';
-  require "core/functions.php";
-  include "views/templates/header.php"; 
+  require 'core/functions.php';
+  include 'templates/header.php'; 
+  include 'Calendar.php';
+  $calendar = new Calendar();
   ?>
 
   <div class="row" id="main">
@@ -14,25 +16,31 @@
 
     </div>
 
-    <div class="col-md-4" id="calendar">
+    <!--<div class="col-md-4" id="calendar">
       <table>
         <tr>
-          <th>Calendrier</th>
+          <th style="font-size:24px;" >Calendrier</th>
         </tr>
         <tr>
-          <td><?php 
-            $fmt = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
-            $fmt->setPattern('dd MMMM YYYY');
-            echo $fmt->format(new DateTime() ); 
+          <td ><b><?php 
+            // $fmt = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
+            // $fmt->setPattern('dd MMMM YYYY');
+            // echo $fmt->format(new DateTime() ); 
 
            ?>
-          </td>
+          </b></td>
           <td></td>
           <td></td>
         </tr>
       </table>
-    </div>
+    </div>-->
+    <aside>
+      <?php
+        echo $calendar;
+        ?>
+    </aside>
+
   </div>
 </body>
 
-<?php include 'views/templates/footer.php'; ?>
+<?php include 'templates/footer.php'; ?>
