@@ -8,6 +8,13 @@
     header("Location: shop.php");
   }
 
+  if( isset($_SESSION['error'])) {
+		$error = $_SESSION['error'];
+		echo '<div class="alert alert-danger" role="alert">';
+				echo $error;
+		echo "</div>";
+		unset($_SESSION['error']);
+	}
 
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("SELECT * FROM " .PRE_DB. "MATERIAL WHERE id=:id");
@@ -37,6 +44,7 @@
   <input type="number" min="0" max="<?php echo $result['instock']; ?>" name="quantity" value="0">
   <a class="btn btn-danger" href="core/addCart.php?idMaterial=<?php echo $result['id']; ?>&quantity=">Ajouter au panier</a>
   <a class="btn btn-danger" href="buyDirectly.php?idMaterial=<?php echo $result['id']; ?>&quantity=">Acheter directement</a>
+  <a class="btn btn-danger" href="rent.php?idMaterial=<?php echo $result['id']; ?>&quantity=">Louer directement</a>
 </div>
 
 <div class="desc-material">
@@ -53,6 +61,7 @@
   // Récupérer les liens "Ajouter au panier" et "Acheter directement"
   const addCartLink = document.querySelector('a[href^="core/addCart.php"]');
   const buyDirectlyLink = document.querySelector('a[href^="buyDirectly.php"]');
+  const rentLink = document.querySelector('a[href^="rent.php"]');
 
   // Écouter l'événement de clic sur les liens
   addCartLink.addEventListener('click', (event) => {
@@ -63,5 +72,10 @@
   buyDirectlyLink.addEventListener('click', (event) => {
     // Mettre à jour la valeur de la quantité dans le lien "Acheter directement"
     buyDirectlyLink.href += quantityInput.value;
+  });
+
+  rentLink.addEventListener('click', (event) => {
+    // Mettre à jour la valeur de la quantité dans le lien "Louer directement"
+    rentLink.href += quantityInput.value;
   });
 </script>

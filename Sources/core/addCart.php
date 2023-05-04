@@ -1,7 +1,7 @@
 <?php
   session_start();
-  require 'core/const.php';
-  require 'core/functions.php';
+  require 'const.php';
+  require 'functions.php';
   $statusRequired = 1;
 
   // Verifier que l'id users existe et les 2 get sont présents
@@ -9,6 +9,7 @@
 
 
   if ((empty($_GET['idMaterial']) || gettype($_GET['idMaterial']) != 'integer') || (empty($_GET['quantity'] || gettype($_GET['quantity']) != 'integer'))) {
+    $_SESSION['error'] = "Une erreur s'est glissée quelque part";
     header("Location: ../shop.php");
   }elseif ($_GET['idMaterial'] <= 0 || $_GET['quantity'] <= 0) {
     $_SESSION['error'] = "L'idMaterial ou la quantité est invalide, inférieur ou égal à 0 est impossible";

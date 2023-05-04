@@ -25,9 +25,9 @@ function connectDB(){
   return $connection;
 }
 
-function isConnected():bool
-{
-  if(!empty($_SESSION['mail']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
+function isConnected(){
+
+  if(!empty($_SESSION['id']) && !empty($_SESSION['login']) && $_SESSION['login'] == 1){
 
     $connect = connectDB();
     $queryPrepared = $connect -> prepare('SELECT id FROM '.PRE_DB.'USER WHERE id=:id');
@@ -51,8 +51,9 @@ function redirectIfNotConnected($status)
 }
 
 function redirectIfNotAuthorized($status){
-  $queryPrepared = $connect -> prepare('SELECT status FROM ' .PRE_DB. 'USER WHERE mail=:mail');
-  $queryPrepared -> execute(['mail'=> $_SESSION['mail']]);
+  $connect = connectDB();
+  $queryPrepared = $connect -> prepare('SELECT status FROM ' .PRE_DB. 'USER WHERE id=:id');
+  $queryPrepared -> execute(['id'=> $_SESSION['id']]);
   $result = $queryPrepared -> fetch();
 
   if ($result['status'] < $status){

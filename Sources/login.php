@@ -49,4 +49,6 @@
 <button type="submit" class="btn btn-primary">Se connecter</button>
 </form>
 
+<a class="btn btn-danger" href="register.php">Pas encore inscrit ?</a>
+
 <?php include 'templates/footer.php' ?>

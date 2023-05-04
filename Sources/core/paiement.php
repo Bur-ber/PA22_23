@@ -1,7 +1,7 @@
 <?php
   session_start();
-  require 'core/const.php';
-  require 'core/functions.php';
+  require 'const.php';
+  require 'functions.php';
 
   if (empty($_SESSION['listID']) || empty($_SESSION['listQuantity'])) {
     header("Location: ../shop.php")
@@ -12,7 +12,8 @@
 
 
   if(gettype($listID == 'array'){ // Si listID est un tableau ça vient du panier
-    if (count($listID) == count($listQuantity)) {
+    if (count($listID) !== count($listQuantity)) {
+      $_SESSION['error'] = "La quantité d'ID matériel est différent de la quantité de demandes";
       unset($_SESSION['listID']);
       unset($_SESSION['listQuantity']);
       header("Location: ../cart.php");
@@ -41,6 +42,13 @@
         "material" => $ID,
         "id" => $_SESSION['id']
       ]);
+
+      $queryAddBuy = $connection -> prepare("INSERT INTO" .PRE_DB. "BUY(user, material, quantity, date) VALUES (:user, :material, :quantity)");
+      $queryAddBuy -> execute([
+        "user" => $_SESSION['id'],
+        "material" => $ID,
+        "quantity" => $listQuantity[$index]
+      ]);
     }
     unset($_SESSION['listID']);
     unset($_SESSION['listQuantity']);
@@ -63,7 +71,14 @@
     "instock" => $listQuantity,
     "id" => $listID
   ]);
-  
+
+  $queryAddBuy = $connection -> prepare("INSERT INTO" .PRE_DB. "BUY(user, material, quantity, date) VALUES (:user, :material, :quantity)");
+  $queryAddBuy -> execute([
+    "user" => $_SESSION['id'],
+    "material" => $listID,
+    "quantity" => $listQuantity
+  ]);
+
   // Rediriger page de remerciements quand tout fini
   unset($_SESSION['listID']);
   unset($_SESSION['listQuantity']);
