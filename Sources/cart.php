@@ -7,16 +7,28 @@
 
   redirectIfNotConnected($statusRequired);
 
+  if( isset($_SESSION['error'])) {
+		$error = $_SESSION['error'];
+		echo '<div class="alert alert-danger" role="alert">';
+				echo $error;
+		echo "</div>";
+		unset($_SESSION['error']);
+	}
+
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("SELECT * FROM " .PRE_DB. "CART WHERE user=:id");
   $queryPrepared -> execute(["id" => $_SESSION['id']]);
   $result = $queryPrepared -> fetchAll();
 
 if (!empty($result)) {
+  $listID = [];
+  $listQuantity = [];
   foreach ($result as $key => $material) {
     $queryMaterial = $connection -> prepare("SELECT * FROM " .PRE_DB. "MATERIAL WHERE id=:id");
-    $queryMaterial -> execute(["id" => $material['id']]);
+    $queryMaterial -> execute(["id" => $material['material']]);
     $resultMaterial = $queryMaterial -> fetch();
+    $listID[] = $material['material'];
+    $listQuantity[] = $material['quantity'];
 
     $queryImg = $connection -> prepare("SELECT srcFile, name FROM " .PRE_DB. "IMAGE where id=:id");
     $queryImg -> execute(['id' => $resultMaterial['image']]);
@@ -36,12 +48,16 @@ if (!empty($result)) {
   </div>
 
 
-
-
 <?php
+
   }
+  $_SESSION['listID'] = serialize($listID);
+  $_SESSION['listQuantity'] = serialize($listQuantity);
+  echo '<a href="core/paiement.php">Acheter</a>';
 }else {
   echo "<h2>Votre panier est vide, aller dans le magasin pour le remplir</h2>";
 }
 
 include 'templates/footer.php';
+
+?>

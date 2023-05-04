@@ -3,6 +3,15 @@
   require 'core/const.php';
   require 'core/functions.php';
   include 'templates/header.php';
+
+  if( isset($_SESSION['error'])) {
+		$error = $_SESSION['error'];
+		echo '<div class="alert alert-danger" role="alert">';
+				echo $error;
+		echo "</div>";
+		unset($_SESSION['error']);
+	}
+
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("SELECT * FROM " .PRE_DB. "MATERIAL");
   $queryPrepared -> execute();

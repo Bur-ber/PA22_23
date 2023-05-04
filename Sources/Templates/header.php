@@ -24,7 +24,7 @@
             <div class="row b4-head">
               <div class="d-inline-flex">
                 <a class="col-1" href="index.php"> <img src="images/Logo-LE.gif" id="Logo" alt="Logo club Livry Escalade"> </a>
-              
+
                 <!-- Barre de recherche -->
                 <form class="col-sm" role="search">
                   <input class="navBar" type="search" aria-label="Search">
@@ -51,7 +51,11 @@
                   </a>
 
                   <!-- Logo Profil -->
-                  <a href="compte.php" class="icon-link">
+                  <?php if(isConnected()){ ?>
+                    <a href="compte.php" class="icon-link">
+                  <?php } else { ?>
+                    <a href="login.php" class="icon-link">
+                  <?php } ?>
                     <svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="47.5" cy="47.5" r="47.5" fill="#006F9A"/>
                       <ellipse cx="48.426" cy="29.3718" rx="14.3519" ry="15.4487" fill="white"/>
@@ -65,13 +69,15 @@
             <!-- Menu Borgir -->
             <nav>
               <a href="index.php" class="link-nav-h">Accueil</a>
-              <?php if(isConnected() && $_SESSION['status']==1){ ?>
+              <?php if(isConnected() && $_SESSION['status'] == 1){ ?>
 
-			          <a class="nav-link" href="logout.php">Se déconnecter</a>
+                <a class="nav-link" href="cart.php">Panier</a>
+                <a class="nav-link" href="logout.php">Se déconnecter</a>
                 <a class="nav-link" href="adminPanel.php">Panel Admin</a>
 
   		        <?php } elseif(isConnected()){ ?>
 
+                <a class="nav-link" href="cart.php">Panier</a>
                 <a class="nav-link" href="logout.php">Se déconnecter</a>
 
   		        <?php } else { ?>
