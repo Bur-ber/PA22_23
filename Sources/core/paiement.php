@@ -39,8 +39,8 @@
       ]);
       $queryDeleteFrCart = $connection -> prepare("DELETE FROM" .PRE_DB. "CART WHERE material=:material AND user=:user");
       $queryDeleteFrCart -> execute([
-        "material" => intval($ID),
-        "user" => intval($_SESSION['id'])
+        "material" => $ID,
+        "user" => $_SESSION['id']
       ]);
 
       $queryAddBuy = $connection -> prepare("INSERT INTO" .PRE_DB. "BUY(user, material, quantity, date) VALUES (:user, :material, :quantity)");
