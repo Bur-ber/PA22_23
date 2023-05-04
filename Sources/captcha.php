@@ -3,8 +3,6 @@ session_start();
 $listImg = glob('images/forCaptcha/*.jpg');
 
 $image = $listImg[array_rand($listImg)];
-var_dump($image);
-die;
 $size = 100; // Taille des carrés
 $captchaPieces = []; // Tableau pour stocker les morceaux de l'image
 // Charge l'image
