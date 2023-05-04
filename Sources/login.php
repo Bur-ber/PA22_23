@@ -33,7 +33,7 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
       echo "Vous avez été banni, vous ne pouvez plus vous connecter";
     }
   }else {
-    echo "L'email ou le mot de passe est incorrecte";
+    echo "L'email ou le mot de passe est incorrect";
   }
 }
 ?>

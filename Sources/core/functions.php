@@ -42,7 +42,8 @@ function isConnected(){
   return false;
 }
 
-function redirectIfNotConnected($status){
+function redirectIfNotConnected($status)
+{
   if(!isConnected()){
     header("Location: login.php");
   }

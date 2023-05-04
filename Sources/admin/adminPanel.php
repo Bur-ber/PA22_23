@@ -8,29 +8,26 @@
 	redirectIfNotConnected($statusRequired);
 ?>
 
-
 <h1>Panel administrateur</h1>
 
 <?php
-
 	$connect = connectDB();
 	$query = $connect -> query("SELECT * FROM " .PRE_DB. "USER");
 	$listOfUsers = $query -> fetchAll();
 
 ?>
 
-
 <table class="table">
 	<thead>
 		<tr>
-			<th>Id</th>
+			<th>ID</th>
 			<th>Genre</th>
 			<th>Prénom</th>
 			<th>Nom</th>
 			<th>Email</th>
-			<th>Country</th>
-			<th>Birthday</th>
-			<th>Status</th>
+			<th>Pays</th>
+			<th>Date de naissance</th>
+			<th>Statut</th>
 			<th>Ajout</th>
 			<th>Modification</th>
 			<th>Actions</th>
@@ -39,7 +36,6 @@
 	<tbody>
 
 		<?php
-
 		foreach($listOfUsers as $user){
 			echo "<tr>";
 			echo "<td>".$user["id"]."</td>";

@@ -29,7 +29,7 @@ $listOfErrors = [];
 //Vérification des données
 $listOfGenders = [0, 1, 2];
 if (!in_array($_POST["gender"], $listOfGenders)){
-  $listOfErrors[] = "Ce genre n'existe pas";
+  $listOfErrors[] = "Genre incorrect";
 }
 
 if (strlen($_POST["firstname"]) < 2){
@@ -58,7 +58,7 @@ if(strlen($_POST["pwd"]) < 8 || !preg_match("#[0-9]#", $_POST["pwd"]) || !preg_m
 }
 
 if ($_POST["pwd"] != $_POST["pwdConfirm"]){
-  $listOfErrors[] = "Mot de passe de confirmation incorrecte";
+  $listOfErrors[] = "Mot de passe de confirmation incorrect";
 }
 
 // entre 13 et 90 ans
@@ -80,8 +80,8 @@ if(empty($listOfErrors)){
   //Si OK
   // --> Insertion en BDD
   // Si on arrive pas à se connecter alors on fait un die avec erreur sql
-  $queryPrepared = $connection -> prepare("INSERT INTO ".PRE_DB."user (firstname, lastname, mail, gender, birthday, pwd) 
-  VALUES (:firstname, :lastname, :mail, :gender, :birthday, :pwd)");
+  $queryPrepared = $connection -> prepare("INSERT INTO ".PRE_DB."user (firstname, lastname, mail, gender, birthday, pwd, status) 
+  VALUES (:firstname, :lastname, :mail, :gender, :birthday, :pwd, :status)");
 
   // Start Request
   $queryPrepared -> execute([
@@ -90,7 +90,8 @@ if(empty($listOfErrors)){
     "mail" => $_POST["mail"],
     "gender" => $_POST["gender"],
     "birthday" => $_POST["birthday"],
-    "pwd" => password_hash($_POST["pwd"], PASSWORD_DEFAULT)
+    "pwd" => password_hash($_POST["pwd"], PASSWORD_DEFAULT),
+    "status" => 2
   ]);
 
   // header login.php

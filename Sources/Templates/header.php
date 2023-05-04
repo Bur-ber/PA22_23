@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel = "icon" href ="images/Logo-LE.gif" type = "image/gif">
+        <link rel = "icon" href ="../../images/Logo-LE.gif" type = "image/gif">
         <title>
           Livry Escalade
         </title>
@@ -87,6 +87,6 @@
 
   		        <?php } ?>
               <a href="event.php" class="link-nav-h">Événements</a>
-              <a href="forum.php" class="link-nav-h">Forum</a>
+              <a href="forumIndex.php" class="link-nav-h">Forum</a>
             </nav>
         </header>
