@@ -19,10 +19,10 @@
 $connect = connectDB();
 
 // préparation de la requete + on lance la requête 
-$query = $connect -> query("SELECT COUNT(*) as total_posts FROM ".PRE_DB."post");
+$query = $connect -> query("SELECT COUNT(*) as total_posts FROM ".PRE_DB."POST");
 $postCount = $query ->fetch();
-$query = $connect -> query("SELECT ".PRE_DB."post.title, ".PRE_DB."post.id as post_id, ".PRE_DB."post.created_at, ".PRE_DB."user.mail  FROM ".PRE_DB."post 
-INNER JOIN ".PRE_DB."user ON ".PRE_DB."user.id = ".PRE_DB."post.user_id  ORDER BY created_at DESC");
+$query = $connect -> query("SELECT ".PRE_DB."POST.title, ".PRE_DB."POST.id as post_id, ".PRE_DB."POST.created_at, ".PRE_DB."USER.mail  FROM ".PRE_DB."POST 
+INNER JOIN ".PRE_DB."USER ON ".PRE_DB."USER.id = ".PRE_DB."POST.user_id  ORDER BY created_at DESC");
 
 $listOfPosts = $query ->fetchAll();
 
@@ -54,7 +54,7 @@ else{
 <?php
 	// on va scanner tous les tuples un par un
 	foreach ($listOfPosts as $index => $post) {
-		$createdAt = get_Time($post['created_at']);
+		$createdAt = get_time($post['created_at']);
 ?>
 		
 		<tr>

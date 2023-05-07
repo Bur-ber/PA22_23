@@ -3,9 +3,8 @@ session_start();
 //vérifier les données entrées comme le cours et avec htmlentities
 require('core/const.php');
 require('core/functions.php');   
-require('Templates/Header.php');
-
-require('Templates/formError.php'); ?>
+require('templates/header.php');
+require('templates/formError.php'); ?>
 
 
     <a href="/MasterTheWeb/Sources/forumIndex.php">Retour à l'accueil</a><br>

@@ -7,7 +7,7 @@
 	redirectIfNotConnected($statusRequired);
 
 	$connect = connectDB();
-	$queryPrepared = $connect->prepare("DELETE FROM " .PRE_DB. "USER WHERE id=:id");
+	$queryPrepared = $connect->prepare("UPDATE ".PRE_DB."USER SET status = 3  WHERE id=:id ");
 	$queryPrepared->execute(["id" => $_GET['id']]);
 
 	header("Location: ../adminPanel.php");

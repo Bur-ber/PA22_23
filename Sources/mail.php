@@ -11,13 +11,13 @@
   }else{
     include 'templates/header.php'; 
     $connect = connectDB();
-    $prepare = $connect-> query("SELECT * FROM ".PRE_DB."user");
+    $prepare = $connect-> query("SELECT * FROM ".PRE_DB."USER");
     $users = $prepare->fetchAll();
     foreach($users as $index => $user){
       if($user['id'] != $_SESSION['id']){
       ?>
       <a href="message.php?id=<?= $user['id'];?>">
-        <p><?= $user['pseudo']; ?></p>
+        <p><?= $user['mail']; ?></p>
       </a>
       <?php 
       }

@@ -76,7 +76,7 @@
 
                   <a class="link-nav-h" href="shop.php">Magasin</a>
                   <a class="link-nav-h" href="logout.php">Se déconnecter</a>
-                  <a class="nav-link" href="adminPanel.php">Panel Admin</a>
+                  <a class="link-nav-h" href="adminPanel.php">Panel Admin</a>
 
                 <?php } elseif(isConnected()){ ?>
 

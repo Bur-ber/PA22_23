@@ -5,7 +5,7 @@
 
     <h1><?= $post['title']; ?></h1>
 
-    <?php require('Templates/formError.php'); ?>
+    <?php require('templates/formError.php'); ?>
 
     <a href="/MasterTheWeb/Sources/forumIndex.php">Retour à l'accueil</a>
 
@@ -19,7 +19,7 @@
                     Date
                 </th>
                 <th>
-                    Messages
+                    Message
                 </th>
             </tr>
         </thead>
@@ -36,8 +36,6 @@
         <?php if(count($answers) > 0){
         foreach($answers as $answer){ ?>
 
-        
-           
            <div class='card p-4 '>
             <?php if(is_answer_owner($answer['user_id'])) { ?>
                 <a href="/edit.php">Editer le commentaire</a>

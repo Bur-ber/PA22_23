@@ -59,7 +59,7 @@ function redirectIfNotAuthorized($status){
 // ----------- FORUM FUNCTIONS -----------
 function post_exist($post_id): bool{
   $pdo = connectDB();
-  $request = $pdo->prepare('SELECT * FROM '.PRE_DB.'post WHERE id = :id_field');
+  $request = $pdo->prepare('SELECT * FROM '.PRE_DB.'POST WHERE id = :id_field');
   
   $request->execute([
     'id_field' => $post_id
@@ -71,8 +71,8 @@ function post_exist($post_id): bool{
 
 function get_post($post_id){
   $pdo = connectDB();
-  $request = $pdo->prepare("SELECT ".PRE_DB."post.title, ".PRE_DB."post.id as post_id, ".PRE_DB."post.message, ".PRE_DB."post.created_at, ".PRE_DB."user.mail  FROM ".PRE_DB."post 
-  INNER JOIN ".PRE_DB."user ON ".PRE_DB."user.id = ".PRE_DB."post.user_id  WHERE ".PRE_DB."post.id = :id_field ORDER BY created_at DESC");
+  $request = $pdo->prepare("SELECT ".PRE_DB."POST.title, ".PRE_DB."POST.id as post_id, ".PRE_DB."POST.message, ".PRE_DB."POST.created_at, ".PRE_DB."user.mail  FROM ".PRE_DB."POST 
+  INNER JOIN ".PRE_DB."USER ON ".PRE_DB."USER.id = ".PRE_DB."POST.user_id  WHERE ".PRE_DB."POST.id = :id_field ORDER BY created_at DESC");
   
   $request->execute([
     'id_field' => $post_id
@@ -94,7 +94,7 @@ function get_answers($post_id){
 
 function create_post($title, $message){
   $pdo = connectDB();
-  $request = $pdo->prepare('INSERT INTO '.PRE_DB.'post (title, message, created_at, user_id) VALUES(:title, :message, now(), :user_id)');
+  $request = $pdo->prepare('INSERT INTO '.PRE_DB.'POST (title, message, created_at, user_id) VALUES(:title, :message, now(), :user_id)');
   
   // TODO : modifier "el batardo" par $_SESSION['mail'] pour obtenir l'utilisateur souhaité
   $request->execute([
@@ -107,7 +107,7 @@ function create_post($title, $message){
 
 function create_comment_for_post($post, $comment){
   $pdo = connectDB();
-  $request = $pdo->prepare('INSERT INTO '.PRE_DB.'comment (author, message, commented_at, corresponding_post) VALUES(:author, :message, now(), :corresponding_post)');
+  $request = $pdo->prepare('INSERT INTO '.PRE_DB.'COMMENT (author, message, commented_at, corresponding_post) VALUES(:author, :message, now(), :corresponding_post)');
  
   // TODO : modifier "el batardo" par $_SESSION['mail'] pour obtenir l'utilisateur souhaité
   $request->execute([
@@ -130,7 +130,7 @@ function is_answer_owner($response_user_id): bool {
 // ------------  MP FUNCTIONS ----------------
 function get_receiver($getid){
   $connection = connectDB();
-    $getuser = $connection->prepare("SELECT * FROM ".PRE_DB."user WHERE id = :id");
+    $getuser = $connection->prepare("SELECT * FROM ".PRE_DB."USER WHERE id = :id");
     $getuser->bindValue(':id', $getid, PDO::PARAM_INT);
     $getuser->execute();
     return $getuser;
@@ -163,19 +163,21 @@ function get_message($getid){
 
 }
 
-function get_Time($time){
+function get_time($time){
   sscanf($time, "%4s-%2s-%2s %2s:%2s:%2s", $annee, $mois, $jour, $heure, $minute, $seconde);
   $correctTime= $jour.'-'.$mois.'-'.$annee.' '.$heure.':'.$minute;
   return $correctTime;
  
 }
-function get_pseudo($getid){
+function get_mail($getid){
   $connect = connectDB();
-  $request = $connect->prepare('SELECT pseudo FROM '.PRE_DB.'user WHERE id=?' );
+  $request = $connect->prepare('SELECT mail FROM '.PRE_DB.'USER WHERE id=?' );
   $request->execute(array($getid));
   $result = $request->fetch();
   return $result;
 }
+
+// ------------  MP FUNCTIONS END ----------------
 
 
 function is_admin(){
@@ -186,11 +188,11 @@ function is_mod(){
   return isset($_SESSION) && $_SESSION['status'] == 3;
 }
 
-function del_post($post){
+function del_POST($post){
   
   $pdo = connectDB();
 
-	$queryPrepared = $pdo->prepare("DELETE FROM " .PRE_DB. "post WHERE id=:id");
+	$queryPrepared = $pdo->prepare("DELETE FROM " .PRE_DB. "POST WHERE id=:id");
 	$queryPrepared->execute(["id" => $post]);
   
 }

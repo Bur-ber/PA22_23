@@ -27,14 +27,14 @@
         if(isset($getid) && !empty($getid)){
             if($getuser->rowCount() > 0){
                 if(isset($_POST['send'])){
-                        if($_POST['msg'] == ""){
+                        if(empty($_POST['msg'])){
                             $errors['msg'] = "Veuillez écrire avant un message avant d'envoyer";
                         }
                          if(!empty($errors)){
                             $_SESSION['errors'] = serialize($errors);
                         }
                         $message = htmlspecialchars($_POST['msg'], ENT_QUOTES);
-                        send_message($message, $getid);
+                        send_message($message, $getid);                        
                         }   
             }else{
                 $errors['message'] =  "Aucun utilisateur trouvé";
@@ -47,20 +47,20 @@
 
 }
 
-$pseudo = get_pseudo($getid);
+$mail = get_mail($getid);
 $messages = get_message($getid);
 foreach ($messages as $index => $sentMessage){
-     $sentAt = get_Time($sentMessage['sent_at']);
+     $sentAt = get_time($sentMessage['sent_at']);
      if($sentMessage['receiver'] == $_SESSION['id']){
         ?>
-        <p style="color:red"><?=  $pseudo[0]; ?></p>
+        <p style="color:red"><?=  $mail[0]; ?></p>
         <p style="color:red"><?= $sentAt; ?></p>
         <p style="color:red"><?= $sentMessage['message']; ?></p>
 
         <?php
         }elseif($sentMessage['receiver'] == $getid){
             ?>
-        <p style="color:green"><?= $_SESSION['pseudo']; ?></p>
+        <p style="color:green"><?= $_SESSION['mail']; ?></p>
         <p style="color:green"><?=  $sentMessage['sent_at']; ?></p>
         <p style="color:green"><?= $sentMessage['message']; ?></p>
         <?php

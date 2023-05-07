@@ -11,7 +11,7 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
 
   $listOfErrors = [];
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("SELECT id, pwd, status, pseudo FROM " .PRE_DB. "USER WHERE mail=:mail");
+  $queryPrepared = $connection -> prepare("SELECT id, pwd, status FROM " .PRE_DB. "USER WHERE mail=:mail");
   $queryPrepared -> execute(["mail" => $_POST["mail"]]);
   $result = $queryPrepared -> fetch();
 
