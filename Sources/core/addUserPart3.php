@@ -16,6 +16,17 @@
   $captchaPieces = json_decode($_POST["listPieces"]);
   $rightOrder = unserialize($_SESSION['rightOrder']);
 
+  if (isset($_POST["event"])) {
+    $event = 1;
+  }else {
+    $event = 0;
+  }
+  if (isset($_POST["shop"])) {
+    $shop = 1;
+  }else {
+    $shop = 0;
+  }
+
   $samePath = 0;
   foreach ($rightOrder as $index => $value) {
     if ($index - 3 < 0) {
@@ -40,8 +51,8 @@
 
     // Start Request
     $queryPrepared -> execute([
-      "event" => $_POST["event"],
-      "shop" => $_POST["shop"],
+      "event" => $event,
+      "shop" => $post,
       "mail" => $_SESSION['mail']
     ]);
 

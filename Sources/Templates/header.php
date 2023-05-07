@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel = "icon" href ="../../images/Logo-LE.gif" type = "image/gif">
+        <link rel = "icon" href ="images/Logo-LE.gif" type = "image/gif">
         <title>
           Livry Escalade
         </title>
@@ -52,7 +52,7 @@
 
                   <!-- Logo Profil -->
                   <?php if(isConnected()){ ?>
-                    <a href="compte.php" class="icon-link">
+                    <a href="account.php" class="icon-link">
                   <?php } else { ?>
                     <a href="login.php" class="icon-link">
                   <?php } ?>
