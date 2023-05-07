@@ -6,15 +6,13 @@
 
 if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
 
-  cleanByTrimAndLow($_POST["mail"]);
-
+  cleanByTrimAndLow($_POST['mail']);
 
   $listOfErrors = [];
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("SELECT id, pwd, status FROM " .PRE_DB. "USER WHERE mail=:mail");
-  $queryPrepared -> execute(["mail" => $_POST["mail"]]);
+  $queryPrepared -> execute(["mail" => $_POST['mail']]);
   $result = $queryPrepared -> fetch();
-
 
   if (!empty($result['pwd']) && password_verify($_POST["pwd"], $result['pwd'])) {
     if ($result['status'] != 0) {
@@ -22,7 +20,9 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
       $_SESSION['status'] = $result['status'];
       $_SESSION['id'] = $result['id'];
       $_SESSION['login'] = 1;
-      $_SESSION['pseudo'] = $result['pseudo'];
+      $date = date_create('now', new DateTimeZone('Europe/Paris'));
+      $queryLogin = $connection -> prepare("UPDATE " .PRE_DB. "USER SET last_connection = :timestamp");
+      $queryLogin -> execute(["timestamp" => date_timestamp_get($date)]);
       header("Location: index.php");
     }else {
       echo "Vous avez été banni, vous ne pouvez plus vous connecter";
@@ -31,7 +31,7 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
     echo "L'email ou le mot de passe est incorrect";
   }
 }
-include 'templates/header.php'; 
+include 'templates/header.php';
 ?>
 
 <div class="container">

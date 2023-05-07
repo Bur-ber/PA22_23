@@ -80,7 +80,7 @@ if(empty($listOfErrors)){
   //Si OK
   // --> Insertion en BDD
   // Si on arrive pas à se connecter alors on fait un die avec erreur sql
-  $queryPrepared = $connection -> prepare("INSERT INTO ".PRE_DB."user (firstname, lastname, mail, gender, birthday, pwd)
+  $queryPrepared = $connection -> prepare("INSERT INTO ".PRE_DB."USER (firstname, lastname, mail, gender, birthday, pwd)
   VALUES (:firstname, :lastname, :mail, :gender, :birthday, :pwd)");
 
   // Start Request

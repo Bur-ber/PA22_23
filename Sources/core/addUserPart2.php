@@ -24,7 +24,7 @@ if(strlen($_POST['postal']) != 5){
   $listOfErrors[] = "Code postale incorrect";
 }
 
-if(strlen($_POST['city']) < 1){
+if(strlen($_POST['city']) < 1){ // Y a une ville en France avec une seule lettre...
   $listOfErrors[] = "Nom de ville trop court";
 }
 

@@ -1,18 +1,26 @@
 <?php
 
-function cleanLastname(&$lastname){
+/*
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/autoload.php';
+*/
+
+function cleanLastname(&$lastname){ // Pour les noms de famille
   $lastname = strtoupper(trim($lastname));
 }
 
-function cleanByTrimAndUcword(&$name){
+function cleanByTrimAndUcword(&$name){ // Principalement pour les prénoms et noms des objets
   $name = ucwords(strtolower(trim($name)));
 }
 
-function cleanByTrimAndUpper(&$name){
+function cleanByTrimAndUpper(&$name){ // Principalement pour le nom des marques
   $name = strtoupper(trim($name));
 }
 
-function cleanByTrimAndLow(&$string){
+function cleanByTrimAndLow(&$string){ // Principalement pour les adresses mails
   $string = strtolower(trim($string));
 }
 
@@ -84,7 +92,7 @@ function get_post($post_id){
 function get_answers($post_id){
     $connect = connectDB();
     $request = $connect->prepare('SELECT author, message, commented_at, user_id  FROM '.PRE_DB.'comment WHERE corresponding_post = :post ORDER BY commented_at DESC');
-    
+
     $request->execute([
       'post' => $post_id,
     ]);
@@ -119,7 +127,7 @@ function create_comment_for_post($post, $comment){
 }
 
 
-function is_answer_owner($response_user_id): bool { 
+function is_answer_owner($response_user_id): bool {
 
   return $response_user_id == $_SESSION['id'];
 
@@ -134,20 +142,19 @@ function get_receiver($getid){
     $getuser->bindValue(':id', $getid, PDO::PARAM_INT);
     $getuser->execute();
     return $getuser;
-      
+
 }
 
 
 function send_message($message, $getid){
     $connect = connectDB();
     $request = $connect->prepare('INSERT INTO '.PRE_DB.'message (message, sender, receiver, sent_at) VALUES(:message, :sender, :receiver, now())');
-    // TODO : modifier "el batardo" par $_SESSION['mail'] pour obtenir l'utilisateur souhaité
     $request->execute([
       'message' => $message,
       'sender' => $_SESSION['id'],
       'receiver' => $getid
     ]);
-  
+
 }
 
 function get_message($getid){
@@ -167,7 +174,7 @@ function get_time($time){
   sscanf($time, "%4s-%2s-%2s %2s:%2s:%2s", $annee, $mois, $jour, $heure, $minute, $seconde);
   $correctTime= $jour.'-'.$mois.'-'.$annee.' '.$heure.':'.$minute;
   return $correctTime;
- 
+
 }
 function get_mail($getid){
   $connect = connectDB();
@@ -194,5 +201,5 @@ function del_POST($post){
 
 	$queryPrepared = $pdo->prepare("DELETE FROM " .PRE_DB. "POST WHERE id=:id");
 	$queryPrepared->execute(["id" => $post]);
-  
+
 }
