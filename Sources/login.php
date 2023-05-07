@@ -6,15 +6,13 @@
 
 if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
 
-  cleanByTrimAndLow($_POST["mail"]);
-
+  cleanByTrimAndLow($_POST['mail']);
 
   $listOfErrors = [];
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("SELECT id, pwd, status, pseudo FROM " .PRE_DB. "USER WHERE mail=:mail");
-  $queryPrepared -> execute(["mail" => $_POST["mail"]]);
+  $queryPrepared = $connection -> prepare("SELECT id, pwd, status FROM " .PRE_DB. "USER WHERE mail=:mail");
+  $queryPrepared -> execute(["mail" => $_POST['mail']]);
   $result = $queryPrepared -> fetch();
-
 
   if (!empty($result['pwd']) && password_verify($_POST["pwd"], $result['pwd'])) {
     if ($result['status'] != 0) {

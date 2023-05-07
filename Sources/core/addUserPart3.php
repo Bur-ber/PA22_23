@@ -16,12 +16,12 @@
   $captchaPieces = json_decode($_POST["listPieces"]);
   $rightOrder = unserialize($_SESSION['rightOrder']);
 
-  if (isset($_POST["event"])) {
+  if (!empty($_POST["event"])) {
     $event = 1;
   }else {
     $event = 0;
   }
-  if (isset($_POST["shop"])) {
+  if (!empty($_POST["shop"])) {
     $shop = 1;
   }else {
     $shop = 0;
@@ -56,7 +56,7 @@
       "mail" => $_SESSION['mail']
     ]);
 
-    $piecesPath = glob('images/forCaptcha/captchaPieces/*.jpg');
+    $piecesPath = glob('../images/forCaptcha/captchaPieces/*.jpg');
     foreach ($piecesPath as $piece){
       unlink($piece);
     }
