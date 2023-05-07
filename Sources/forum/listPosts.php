@@ -54,13 +54,13 @@ else{
 <?php
 	// on va scanner tous les tuples un par un
 	foreach ($listOfPosts as $index => $post) {
-		sscanf($post['created_at'], "%4s-%2s-%2s %2s:%2s:%2s", $annee, $mois, $jour, $heure, $minute, $seconde);
+		$createdAt = get_Time($post['created_at']);
 ?>
 		
 		<tr>
 			<td><?= $post['mail'] ?></td>
 			<td><a href="?post=<?= $post['post_id']; ?>"><?= $post['title'] ?></a></td>
-			<td><?= $jour , '-' , $mois , '-' , $annee , ' ' , $heure , ':' , $minute ?></td>
+			<td><?= $createdAt; ?></td>
 			<td>
 			<?php if(is_admin()) { ?> 
 				<form action="actions/deletePost.php" method="post">

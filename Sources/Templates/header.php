@@ -16,9 +16,12 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+        
     </head>
     <body>
+      
         <header>
+          
             <!-- titre du club, barre de recherche de post (?), liens vers différentes pages :
             inscription/connexion, contact, voir sur d'autres sites -->
             <div class="row b4-head">
@@ -42,7 +45,7 @@
                   </a>
 
                   <!-- Logo Shop -->
-                  <a href="shop.php" class="icon-link">
+                  <a href="cart.php" class="icon-link">
                     <svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="47.5" cy="47.5" r="47.5" fill="#006F9A"/>
                       <path d="M13.6049 45.0721C11.4136 39.8033 15.2852 34 20.9916 34H74.0084C79.7148 34 83.5864 39.8033 81.3951 45.0721L70.1657 72.0721C68.9247 75.0558 66.0105 77 62.779 77H32.221C28.9895 77 26.0753 75.0559 24.8343 72.0721L13.6049 45.0721Z" fill="white"/>
@@ -52,7 +55,7 @@
 
                   <!-- Logo Profil -->
                   <?php if(isConnected()){ ?>
-                    <a href="compte.php" class="icon-link">
+                    <a href="account.php" class="icon-link">
                   <?php } else { ?>
                     <a href="login.php" class="icon-link">
                   <?php } ?>
@@ -67,26 +70,30 @@
             </div>
 
             <!-- Menu Borgir -->
-            <nav>
+            <nav class="navbar navbar-expand-lg">
               <a href="index.php" class="link-nav-h">Accueil</a>
-              <?php if(isConnected() && is_admin()){ ?>
+                <?php if(isConnected() && is_admin()){ ?>
 
-                <a class="nav-link" href="cart.php">Panier</a>
-                <a class="nav-link" href="logout.php">Se déconnecter</a>
-                <a class="nav-link" href="adminPanel.php">Panel Admin</a>
+                  <a class="link-nav-h" href="shop.php">Magasin</a>
+                  <a class="link-nav-h" href="logout.php">Se déconnecter</a>
+                  <a class="nav-link" href="adminPanel.php">Panel Admin</a>
 
-  		        <?php } elseif(isConnected()){ ?>
+                <?php } elseif(isConnected()){ ?>
 
-                <a class="nav-link" href="cart.php">Panier</a>
-                <a class="nav-link" href="logout.php">Se déconnecter</a>
+                  <a class="link-nav-h" href="logout.php">Se déconnecter</a>
+                  <a class="link-nav-h" href="shop.php">Magasin</a>
 
-  		        <?php } else { ?>
+                <?php } else { ?>
 
-  			          <a class="nav-link" href="register.php">S'inscrire</a>
-  			          <a class="nav-link" href="login.php">Se connecter</a>
+                    <a class="link-nav-h" href="register.php">S'inscrire</a>
+                    <a class="link-nav-h" href="login.php">Se connecter</a>
 
-  		        <?php } ?>
-              <a href="event.php" class="link-nav-h">Événements</a>
-              <a href="forumIndex.php" class="link-nav-h">Forum</a>
+                <?php } ?>
+                <a href="event.php" class="link-nav-h">Evénements</a>
+                <a href="forumIndex.php" class="link-nav-h">Forum</a>
             </nav>
+
+              
+
         </header>
+        <script src="/js/burgerMenu.js"></script>

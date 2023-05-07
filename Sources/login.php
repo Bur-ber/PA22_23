@@ -2,14 +2,8 @@
   session_start();
   require 'core/const.php';
   require 'core/functions.php';
-  include 'templates/header.php';
-?>
 
-<div class="container">
-  <h1>Se connecter</h1>
-</div>
 
-<?php
 if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
 
   cleanByTrimAndLow($_POST["mail"]);
@@ -17,7 +11,7 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
 
   $listOfErrors = [];
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("SELECT id, pwd, status FROM " .PRE_DB. "USER WHERE mail=:mail");
+  $queryPrepared = $connection -> prepare("SELECT id, pwd, status, pseudo FROM " .PRE_DB. "USER WHERE mail=:mail");
   $queryPrepared -> execute(["mail" => $_POST["mail"]]);
   $result = $queryPrepared -> fetch();
 
@@ -28,6 +22,7 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
       $_SESSION['status'] = $result['status'];
       $_SESSION['id'] = $result['id'];
       $_SESSION['login'] = 1;
+      $_SESSION['pseudo'] = $result['pseudo'];
       header("Location: index.php");
     }else {
       echo "Vous avez été banni, vous ne pouvez plus vous connecter";
@@ -36,7 +31,12 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
     echo "L'email ou le mot de passe est incorrect";
   }
 }
+include 'templates/header.php'; 
 ?>
+
+<div class="container">
+  <h1>Se connecter</h1>
+</div>
 
 <form  action="login.php" method="POST">
 <div class="mb-3">
@@ -54,4 +54,4 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
 
 <a class="btn btn-danger" href="register.php">Pas encore inscrit ?</a>
 
-<?php include 'templates/footer.php' ?>
+<?php include 'templates/footer.php'?>
