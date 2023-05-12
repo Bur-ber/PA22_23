@@ -91,7 +91,7 @@ function get_post($post_id){
 
 function get_answers($post_id){
     $connect = connectDB();
-    $request = $connect->prepare('SELECT author, message, commented_at, user_id  FROM '.PRE_DB.'comment WHERE corresponding_post = :post ORDER BY commented_at DESC');
+    $request = $connect->prepare('SELECT author, message, commented_at, user_id  FROM '.PRE_DB.'COMMENT WHERE corresponding_post = :post ORDER BY commented_at DESC');
 
     $request->execute([
       'post' => $post_id,

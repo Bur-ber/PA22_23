@@ -36,7 +36,11 @@
 
                 <div >
                   <!-- Logo Mail -->
-                  <a href="mail.php" class="icon-link">
+                  <?php if(isConnected()){ ?>
+                    <a href="mail.php" class="icon-link">
+                  <?php } else { ?>
+                    <a href="login.php" class="icon-link">
+                  <?php } ?>
                     <svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="47.5" cy="47.5" r="47.5" fill="#006F9A"/>
                       <rect x="15.5" y="24.5" width="64" height="46" rx="8.5" fill="white" stroke="#006F9A" stroke-width="3"/>
@@ -45,7 +49,11 @@
                   </a>
 
                   <!-- Logo Shop -->
-                  <a href="cart.php" class="icon-link">
+                  <?php if(isConnected()){?>
+                    <a href="cart.php" class="icon-link">
+                  <?php } else { ?>
+                    <a href="shop.php" class="icon-link">
+                  <?php } ?>
                     <svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="47.5" cy="47.5" r="47.5" fill="#006F9A"/>
                       <path d="M13.6049 45.0721C11.4136 39.8033 15.2852 34 20.9916 34H74.0084C79.7148 34 83.5864 39.8033 81.3951 45.0721L70.1657 72.0721C68.9247 75.0558 66.0105 77 62.779 77H32.221C28.9895 77 26.0753 75.0559 24.8343 72.0721L13.6049 45.0721Z" fill="white"/>
