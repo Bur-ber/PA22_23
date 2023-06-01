@@ -2,14 +2,24 @@
 	session_start();
 	require 'core/const.php';
 	require 'core/functions.php';
-  include 'templates/header.php'; ?>
+  include 'templates/header.php';
 
-<?php
-if( isset($_SESSION['image'])) {
-	$image = $_SESSION['image'];
-  $pieces = unserialize($_SESSION['pieces']);
-}
- ?>
+
+	if( isset($_SESSION['errors'])) {
+		$listOfErrors = unserialize($_SESSION['errors']);
+		echo '<div class="alert alert-danger" role="alert">';
+		foreach( $listOfErrors as $error){
+				echo "<li>".$error;
+		}
+		echo "</div>";
+		unset($_SESSION['errors']);
+	}
+
+	if( isset($_SESSION['image'])) {
+		$image = $_SESSION['image'];
+	  $pieces = unserialize($_SESSION['pieces']);
+	}
+?>
 
  <nav aria-label="...">
   <ul class="pagination pagination-lg">
@@ -123,4 +133,5 @@ if( isset($_SESSION['image'])) {
 		form.submit();
 	});
 </script>
+
 <?php include 'templates/footer.php'; ?>

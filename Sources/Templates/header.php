@@ -16,12 +16,12 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
-        
+
     </head>
     <body>
-      
+
         <header>
-          
+
             <!-- titre du club, barre de recherche de post (?), liens vers différentes pages :
             inscription/connexion, contact, voir sur d'autres sites -->
             <div class="row b4-head">
@@ -101,7 +101,7 @@
                 <a href="forumIndex.php" class="link-nav-h">Forum</a>
             </nav>
 
-              
+
 
         </header>
-        <script src="/js/burgerMenu.js"></script>
+        <!--<script src="js/burgerMenu.js"></script>-->

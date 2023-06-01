@@ -6,11 +6,8 @@
   // Objectif : Insertion du user en BDD
 
   //Récupération des données
-  if(count($_POST) < 2 || count($_POST) > 4
-  || empty($_POST["cgu"])
-  || empty($_POST["listPieces"])){
-
-    die("Exploitation faille xss détectée");
+  if(empty($_POST["cgu"])){
+    $listOfErrors[] = "Les CGUs doivent être lues et acceptés";
   }
 
   $captchaPieces = json_decode($_POST["listPieces"]);
@@ -45,7 +42,14 @@
   }
 
 
-  if ($samePath == 9) {
+  if ($samePath != 9) {
+    $listOfErrors[] = "Captcha incorrect";
+  }
+
+  if (!empty($listOfErrors)) {
+    $_SESSION["errors"] = serialize($listOfErrors);
+    header("Location: ../captcha.php");
+  }else {
     $connection = connectDB();
     $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "USER SET event=:event, shop=:shop WHERE mail=:mail");
 
@@ -56,11 +60,16 @@
       "mail" => $_SESSION['mail']
     ]);
 
+    $queryGetID = $connection -> prepare("SELECT id FROM" .PRE_DB. "USER WHERE mail = :mail");
+    $queryGetID -> execute(["mail" => $_SESSION['mail']]);
+    $result = $queryGetID -> fetch();
+
+    $queryLog = $connection -> prepare("INSERT INTO " .PRE_DB. "LOG(action, user, type) VALUES (:action, :user, :type)");
+    $queryLog -> execute(["action" => "à créer son profil.", "user" => $result['id'], "type" => "Création profil"]);
+
     $piecesPath = glob('../images/forCaptcha/captchaPieces/*.jpg');
     foreach ($piecesPath as $piece){
       unlink($piece);
     }
     header("Location: ../login.php");
-  } else {
-    header("Location: ../captcha.php");
   }

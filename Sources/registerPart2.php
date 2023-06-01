@@ -2,9 +2,8 @@
 	session_start();
 	require 'core/const.php';
 	require 'core/functions.php';
-  include 'templates/header.php'; ?>
+  include 'templates/header.php';
 
-	<?php
 	if( isset($_SESSION['errors'])) {
 		$listOfErrors = unserialize($_SESSION['errors']);
 		echo '<div class="alert alert-danger" role="alert">';

@@ -157,6 +157,8 @@
     $queryModify -> execute(["timestamp" => time() + 7200, "id" => $_SESSION["id"]]);
   }
 
+  $queryLog = $connection -> prepare("INSERT INTO " .PRE_DB. "LOG(action, user, type) VALUES (:action, :user, :type)");
+  $queryLog -> execute(["action" => "à modifier un à plusieurs éléments de son profil.", "user" => $_SESSION["id"], "type" => "Modification profil"]);
 
 ?>
 

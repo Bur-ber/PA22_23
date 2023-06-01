@@ -52,7 +52,7 @@
 				<td><?=$user["created_at"]?></td>
 				<td><?=$user["updated_at"]?></td>
 			<?php if($user["status"] == 0){?>
-				class="select" name="actions">
+				<class="select" name="actions">
 					<form action="adminPanel.php">
 						<select>
 							<option class='btn btn-danger' href='core/delUsers.php?id="<?php $user["id"]?>"'>Supprimer</option>
@@ -63,7 +63,7 @@
 			</tr>
 			<?php
 			}else{?>
-					<form action="adminPanel.php"> 
+					<form action="adminPanel.php">
 						<select>
 							<option class='btn btn-danger' href='core/delUsers.php?id="<?php $user["id"]?>"'>Supprimer</option>
 							<option class='btn btn-danger' href='core/banUsers.php?id="<?php $user["id"]?>"'>Bannir</option>
@@ -73,9 +73,9 @@
 					</form>
 				<button>
 			</tr>
-		<?php		
+		<?php
 		}
-			
+
 		}
 		?>
 

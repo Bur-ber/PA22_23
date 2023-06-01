@@ -8,7 +8,6 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
 
   cleanByTrimAndLow($_POST['mail']);
 
-  $listOfErrors = [];
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("SELECT id, pwd, status FROM " .PRE_DB. "USER WHERE mail=:mail");
   $queryPrepared -> execute(["mail" => $_POST['mail']]);
@@ -20,9 +19,8 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
       $_SESSION['status'] = $result['status'];
       $_SESSION['id'] = $result['id'];
       $_SESSION['login'] = 1;
-      $date = date_create('now', new DateTimeZone('Europe/Paris'));
-      $queryLogin = $connection -> prepare("UPDATE " .PRE_DB. "USER SET last_connection = :timestamp");
-      $queryLogin -> execute(["timestamp" => date_timestamp_get($date)]);
+      $queryLogin = $connection -> prepare("UPDATE " .PRE_DB. "USER SET last_connection = :timestamp WHERE id=:id");
+      $queryLogin -> execute(["timestamp" => time(), "id" => $_SESSION['id']]);
       header("Location: index.php");
     }else {
       echo "Vous avez été banni, vous ne pouvez plus vous connecter";
