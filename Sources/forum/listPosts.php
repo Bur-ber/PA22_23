@@ -39,7 +39,7 @@ else{
 	<table width="700">
     <tr>
 		<td>
-			Auteur
+		Auteur
 		</td>
     	<td>
 		Titre du sujet
