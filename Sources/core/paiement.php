@@ -37,13 +37,13 @@
         "instock" => $listQuantity[$index],
         "id" => $ID
       ]);
-      $queryDeleteFrCart = $connection -> prepare("DELETE FROM" .PRE_DB. "CART WHERE material=:material AND user=:user");
+      $queryDeleteFrCart = $connection -> prepare("DELETE FROM " .PRE_DB. "CART WHERE material=:material AND user=:user");
       $queryDeleteFrCart -> execute([
         "material" => $ID,
         "user" => $_SESSION['id']
       ]);
 
-      $queryAddBuy = $connection -> prepare("INSERT INTO" .PRE_DB. "BUY(user, material, quantity, date) VALUES (:user, :material, :quantity)");
+      $queryAddBuy = $connection -> prepare("INSERT INTO " .PRE_DB. "BUY(user, material, quantity, date) VALUES (:user, :material, :quantity)");
       $queryAddBuy -> execute([
         "user" => $_SESSION['id'],
         "material" => $ID,
@@ -52,6 +52,10 @@
     }
     unset($_SESSION['listID']);
     unset($_SESSION['listQuantity']);
+
+    $queryLog = $connection -> prepare("INSERT INTO " .PRE_DB. "LOG(action, user, type) VALUES (:action, :user, :type)");
+    $queryLog -> execute(["action" => "à acheter un à plusieurs artcile via son panier.", "user" => $_SESSION['id'], "type" => "Achat"]);
+
     header("Location: ../thanks.php");
 
   }
@@ -72,7 +76,7 @@
     "id" => $listID
   ]);
 
-  $queryAddBuy = $connection -> prepare("INSERT INTO" .PRE_DB. "BUY(user, material, quantity, date) VALUES (:user, :material, :quantity)");
+  $queryAddBuy = $connection -> prepare("INSERT INTO " .PRE_DB. "BUY(user, material, quantity, date) VALUES (:user, :material, :quantity)");
   $queryAddBuy -> execute([
     "user" => $_SESSION['id'],
     "material" => $listID,
@@ -82,4 +86,8 @@
   // Rediriger page de remerciements quand tout fini
   unset($_SESSION['listID']);
   unset($_SESSION['listQuantity']);
+
+  $queryLog = $connection -> prepare("INSERT INTO " .PRE_DB. "LOG(action, user, type) VALUES (:action, :user, :type)");
+  $queryLog -> execute(["action" => "à acheter un à plusieurs article directement.", "user" => $_SESSION['id'], "type" => "Achat"]);
+
   header("Location: ../thanks.php");

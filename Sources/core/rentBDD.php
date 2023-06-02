@@ -27,4 +27,8 @@
 
   unset($_SESSION['listID']);
   unset($_SESSION['listQuantity']);
+
+  $queryLog = $connection -> prepare("INSERT INTO " .PRE_DB. "LOG(action, user, type) VALUES (:action, :user, :type)");
+  $queryLog -> execute(["action" => "à louer un à plusieurs article pour ". $week ."semaines.", "user" => $_SESSION['id'], "type" => "Location"]);
+
   header("Location: ../thanks.php");

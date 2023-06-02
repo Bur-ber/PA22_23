@@ -47,6 +47,10 @@
 
           $queryInsertMaterial = $connect -> prepare("INSERT INTO ". PRE_DB ."MATERIAL(brand, name, description, image, price, instock) VALUES (:brand, :name, :description, :image, :price, :instock)");
           $queryInsertMaterial -> execute(["brand" => $_POST['brand'], "name" => $_POST['name'], "description" => $_POST['description'], "image" => $resultImgID[0], "price" => $price, "instock" => $instock]);
+
+          $queryLog = $connection -> prepare("INSERT INTO " .PRE_DB. "LOG(action, user, type) VALUES (:action, :user, :type)");
+          $queryLog -> execute(["action" => "à ajouter un article au magasin.", "user" => $_SESSION['id'], "type" => "Ajout article"]);
+
           header("Location: shop.php");
         } else {
           echo "L'image n'as pas pu être chargée";
@@ -83,6 +87,8 @@
 
 	<button>Ajouter l'objet</button>
 </form>
+
+<a href="modifyMaterial.php">Modifier un objet existant</a>
 
 
 

@@ -17,9 +17,9 @@
         
     </head>
     <body>
-      
+
         <header>
-          
+
             <!-- titre du club, barre de recherche de post (?), liens vers différentes pages :
             inscription/connexion, contact, voir sur d'autres sites -->
             <div class="row b4-head">
@@ -99,7 +99,7 @@
                 <a href="forumIndex.php" class="link-nav-h">Forum</a>
             </nav>
 
-              
+
 
         </header>
-        <script src="/js/burgerMenu.js"></script>
+        <!--<script src="js/burgerMenu.js"></script>-->
