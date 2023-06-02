@@ -104,7 +104,6 @@ function create_post($title, $message){
   $pdo = connectDB();
   $request = $pdo->prepare('INSERT INTO '.PRE_DB.'POST (title, message, created_at, user_id) VALUES(:title, :message, now(), :user_id)');
   
-  // TODO : modifier "el batardo" par $_SESSION['mail'] pour obtenir l'utilisateur souhaité
   $request->execute([
     'title' => $title,
     'message' => $message,
@@ -117,7 +116,6 @@ function create_comment_for_post($post, $comment){
   $pdo = connectDB();
   $request = $pdo->prepare('INSERT INTO '.PRE_DB.'COMMENT (author, message, commented_at, corresponding_post) VALUES(:author, :message, now(), :corresponding_post)');
  
-  // TODO : modifier "el batardo" par $_SESSION['mail'] pour obtenir l'utilisateur souhaité
   $request->execute([
     'author' => $_SESSION['mail'],
     'message' => $comment,
@@ -185,6 +183,33 @@ function get_mail($getid){
 }
 
 // ------------  MP FUNCTIONS END ----------------
+
+// -----------  CALENDAR FUNCTIONS ---------------
+
+function count_events(){
+  $connect = connectDB();
+
+  // préparation de la requete + on lance la requête 
+  $query = $connect -> query("SELECT COUNT(*) as total_events FROM ".PRE_DB."EVENT");
+  $eventCount = $query ->fetch();
+
+  return $eventCount;
+}
+function get_listEvents(){
+    // on se connecte à notre base de données
+  $connect = connectDB();
+
+  // préparation de la requete + on lance la requête 
+  $query = $connect -> query("SELECT COUNT(*) as total_events FROM ".PRE_DB."EVENT");
+  $eventCount = $query ->fetch();
+
+  $query = $connect -> query("SELECT title, place, description, register_start, start_date FROM ".PRE_DB."EVENT WHERE start_date >=CURDATE() ORDER BY start_date ASC");
+  $listOfEvents = $query ->fetchAll();
+
+  return $listOfEvents;
+}
+
+
 
 
 function is_admin(){

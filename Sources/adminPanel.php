@@ -25,7 +25,7 @@
 			<th>Prénom</th>
 			<th>Nom</th>
 			<th>Email</th>
-			<th>Pays</th>
+			<th>Ville</th>
 			<th>Date de naissance</th>
 			<th>Statut</th>
 			<th>Ajout</th>

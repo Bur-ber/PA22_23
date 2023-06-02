@@ -1,3 +1,4 @@
+/*------------------------ GENERAL ---------------------------- */
 body {
   background-color: #ffffff !important;
   font-family: "Calibri", cursive !important;
@@ -81,6 +82,23 @@ nav {
   padding: 40px;
 }
 
+.link-nav-f {
+  color: #332F2C;
+  height: auto;
+  font-size: 20px;
+  text-decoration: none;
+  margin: 10px;
+  padding: 5px;
+}
+
+.link-nav-f:hover{
+  box-sizing: content-box;
+  text-decoration: underline;
+}
+/*---------------------- GENERAL END -------------------------- */
+
+
+/*------------------------- INDEX ----------------------------- */
 #bio {
   max-width: 600px;
   border: 5px #006F9A solid;
@@ -118,9 +136,9 @@ nav {
 	top:1px;
 }
 
-#calendar {
+#calendar{
   margin: auto;
-  color: #060707 !important;
+  color: #060707;
   align-self: center;
 }
 
@@ -130,28 +148,32 @@ nav {
 
 #calendar table th {
   text-align: center;
+  font-size: 24px;
 }
 
-footer {
-  background-color: #D9D9D9;
-  margin-top: auto;
-  position: relative;
+#calendar-Btn{
+  background-color:#006F9A solid;
+	display:inline-block;
+	cursor: pointer;
+	color:#000000;
+	font-size:17px;
+  text-align: center;
+  font-weight: bold;  
 }
 
-.link-nav-f {
-  color: #332F2C;
-  height: auto;
-  font-size: 20px;
-  text-decoration: none;
-  margin: 10px;
-  padding: 5px;
+#calendar-Btn:hover {
+	text-decoration: underline;
+  color: #ffffff;
 }
 
-.link-nav-f:hover{
-  box-sizing: content-box;
-  text-decoration: underline;
+#calendar-Btn:active {
+  position:relative;
+  top:1px;
 }
+/*------------------------ INDEX  END ----------------------------- */
 
+
+/*-------------------------- CAPTCHA ------------------------------ */
 .captcha-piece img{
   width: 100px;
   height: 100px;
@@ -168,7 +190,10 @@ footer {
   height: 100px;
   border: 1px solid #ccc;
 }
+/*------------------------ CAPTCHA END ---------------------------- */
 
+
+/*---------------------------- SHOP ------------------------------- */
 .material {
   width: calc((100% - 6%) / 4);
   height: 100%;
@@ -193,89 +218,7 @@ footer {
     height: auto;
     width: auto;
 }
+/*------------------------- SHOP END ------------------------------ */
 
-/* ------------Calendar CSS style----------------------------*/
-.calendar {
-  display: flex;
-  flex-flow: column;
-}
-.calendar .header .month-year {
-  font-size: 20px;
-  font-weight: bold;
-  color: #636e73;
-  padding: 20px 0;
-}
-.calendar .days {
-  display: flex;
-  flex-flow: wrap;
-}
-.calendar .days .day_name {
-  width: calc(50% / 7);
-  height: calc(50%/7);
-  border-right: 1px solid #2c7aca;
-  padding: 10px;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 12px;
-  font-weight: bold;
-  color: #818589;
-  color: #fff;
-  background-color: #448cd6;
-}
-.calendar .days .day_name:nth-child(7) {
-  border: none;
-}
-.calendar .days .day_num {
-  display: flex;
-  flex-flow: column;
-  width: calc(50% / 7);
-  border-right: 1px solid #e6e9ea;
-  border-bottom: 1px solid #e6e9ea;
-  padding: 15px;
-  font-weight: bold;
-  color: #7c878d;
-  cursor: pointer;
-  min-height: 75px;
-}
-.calendar .days .day_num span {
-  display: inline-flex;
-  text-align: center;
-  width: 15px;
-  font-size: 14px;
-}
-.calendar .days .day_num .event {
-  margin-top: 10px;
-  font-weight: 500;
-  font-size: 14px;
-  padding: 3px 6px;
-  border-radius: 4px;
-  background-color: #f7c30d;
-  color: #fff;
-  word-wrap: break-word;
-}
-.calendar .days .day_num .event.green {
-  background-color: #51ce57;
-}
-.calendar .days .day_num .event.blue {
-  background-color: #518fce;
-}
-.calendar .days .day_num .event.red {
-  background-color: #ce5151;
-}
-.calendar .days .day_num:nth-child(7n+1) {
-  border-left: 1px solid #e6e9ea;
-}
-.calendar .days .day_num:hover {
-  background-color: #fdfdfd;
-}
-.calendar .days .day_num.ignore {
-  background-color: #fdfdfd;
-  color: #ced2d4;
-  cursor: inherit;
-}
-.calendar .days .day_num.selected {
-  background-color: #f1f2f3;
-  cursor: inherit;
-}
 
-/* ------------- END CALENDAR ----------------- */
+

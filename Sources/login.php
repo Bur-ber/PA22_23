@@ -22,7 +22,7 @@ if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
       $_SESSION['login'] = 1;
       $date = date_create('now', new DateTimeZone('Europe/Paris'));
       $queryLogin = $connection -> prepare("UPDATE " .PRE_DB. "USER SET last_connection = :timestamp");
-      $queryLogin -> execute(["timestamp" => date_timestamp_get($date)]);
+      //$queryLogin -> execute(["timestamp" => date_timestamp_get($date)]);
       header("Location: index.php");
     }else {
       echo "Vous avez été banni, vous ne pouvez plus vous connecter";
