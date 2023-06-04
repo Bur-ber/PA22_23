@@ -68,7 +68,7 @@ function redirectIfNotAuthorized($status){
 function post_exist($post_id): bool{
   $pdo = connectDB();
   $request = $pdo->prepare('SELECT * FROM '.PRE_DB.'POST WHERE id = :id_field');
-  
+
   $request->execute([
     'id_field' => $post_id
   ]);
@@ -79,9 +79,9 @@ function post_exist($post_id): bool{
 
 function get_post($post_id){
   $pdo = connectDB();
-  $request = $pdo->prepare("SELECT ".PRE_DB."POST.title, ".PRE_DB."POST.id as post_id, ".PRE_DB."POST.message, ".PRE_DB."POST.created_at, ".PRE_DB."user.mail  FROM ".PRE_DB."POST 
+  $request = $pdo->prepare("SELECT ".PRE_DB."POST.title, ".PRE_DB."POST.id as post_id, ".PRE_DB."POST.message, ".PRE_DB."POST.created_at, ".PRE_DB."USER.mail  FROM ".PRE_DB."POST
   INNER JOIN ".PRE_DB."USER ON ".PRE_DB."USER.id = ".PRE_DB."POST.user_id  WHERE ".PRE_DB."POST.id = :id_field ORDER BY created_at DESC");
-  
+
   $request->execute([
     'id_field' => $post_id
   ]);
@@ -103,7 +103,7 @@ function get_answers($post_id){
 function create_post($title, $message){
   $pdo = connectDB();
   $request = $pdo->prepare('INSERT INTO '.PRE_DB.'POST (title, message, created_at, user_id) VALUES(:title, :message, now(), :user_id)');
-  
+
   $request->execute([
     'title' => $title,
     'message' => $message,
@@ -115,7 +115,7 @@ function create_post($title, $message){
 function create_comment_for_post($post, $comment){
   $pdo = connectDB();
   $request = $pdo->prepare('INSERT INTO '.PRE_DB.'COMMENT (author, message, commented_at, corresponding_post) VALUES(:author, :message, now(), :corresponding_post)');
- 
+
   $request->execute([
     'author' => $_SESSION['mail'],
     'message' => $comment,
@@ -146,7 +146,7 @@ function get_receiver($getid){
 
 function send_message($message, $getid){
     $connect = connectDB();
-    $request = $connect->prepare('INSERT INTO '.PRE_DB.'message (message, sender, receiver, sent_at) VALUES(:message, :sender, :receiver, now())');
+    $request = $connect->prepare('INSERT INTO '.PRE_DB.'MESSAGE (message, sender, receiver, sent_at) VALUES(:message, :sender, :receiver, now())');
     $request->execute([
       'message' => $message,
       'sender' => $_SESSION['id'],
@@ -157,7 +157,7 @@ function send_message($message, $getid){
 
 function get_message($getid){
   $connect = connectDB();
-  $request = $connect->prepare('SELECT * FROM '.PRE_DB.'message WHERE (sender = :sender AND receiver = :receiver) OR (sender = :receiver AND receiver = :sender) ORDER BY sent_at ASC');
+  $request = $connect->prepare('SELECT * FROM '.PRE_DB.'MESSAGE WHERE (sender = :sender AND receiver = :receiver) OR (sender = :receiver AND receiver = :sender) ORDER BY sent_at ASC');
   $request->execute([
     'sender' => $_SESSION['id'],
     'receiver' => $getid
@@ -189,7 +189,7 @@ function get_mail($getid){
 function count_events(){
   $connect = connectDB();
 
-  // préparation de la requete + on lance la requête 
+  // préparation de la requete + on lance la requête
   $query = $connect -> query("SELECT COUNT(*) as total_events FROM ".PRE_DB."EVENT");
   $eventCount = $query ->fetch();
 
@@ -199,7 +199,7 @@ function get_listEvents(){
     // on se connecte à notre base de données
   $connect = connectDB();
 
-  // préparation de la requete + on lance la requête 
+  // préparation de la requete + on lance la requête
   $query = $connect -> query("SELECT COUNT(*) as total_events FROM ".PRE_DB."EVENT");
   $eventCount = $query ->fetch();
 
@@ -221,7 +221,7 @@ function is_mod(){
 }
 
 function del_POST($post){
-  
+
   $pdo = connectDB();
 
 	$queryPrepared = $pdo->prepare("DELETE FROM " .PRE_DB. "POST WHERE id=:id");

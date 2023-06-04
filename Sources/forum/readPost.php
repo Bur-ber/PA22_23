@@ -1,4 +1,4 @@
-<?php 
+<?php
     $post = get_post($_GET['post']);
     $answers = get_answers($_GET['post']);
 ?>
@@ -7,7 +7,7 @@
 
     <?php require('templates/formError.php'); ?>
 
-    <a href="/MasterTheWeb/Sources/forumIndex.php">Retour à l'accueil</a>
+    <a href="forumIndex.php">Retour à l'accueil</a>
 
         <table width="500">
         <thead>
@@ -38,7 +38,7 @@
 
            <div class='card p-4 '>
             <?php if(is_answer_owner($answer['user_id'])) { ?>
-                <a href="/edit.php">Editer le commentaire</a>
+                <a href="edit.php">Editer le commentaire</a>
             <?php } ?>
                 <p><?= $answer['author']; ?></p>
                 <p><?= $answer['commented_at']?></p>

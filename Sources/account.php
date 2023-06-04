@@ -106,5 +106,9 @@
   <a href="modifyAccount.php">Modifier mon profil</a>
 </div>
 
+<div class="export-button">
+  <a href="core\ProfileToPDF.php">Exporter mes informations</a>
+</div>
+
 
 <?php include 'templates/footer.php'; ?>
