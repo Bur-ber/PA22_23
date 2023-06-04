@@ -99,7 +99,5 @@
                 <a href="forumIndex.php" class="link-nav-h">Forum</a>
             </nav>
 
-
-
         </header>
         <!--<script src="js/burgerMenu.js"></script>-->

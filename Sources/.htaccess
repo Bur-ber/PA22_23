@@ -1,0 +1,2 @@
+ErrorDocument 404 https://http.cat/404/
+ErrorDocument 500 https://http.cat/500/

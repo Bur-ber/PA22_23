@@ -35,7 +35,7 @@
         <div class="guest">
           <span>Nombre de participant actuel : <br> <?php echo $nbGuest[0]; ?></span>
         </div>
-        <?php if ($value['register_start'] + 7 < date("d-m-y")) {
+        <?php if ($value['register_start'] + 7 < date("d-m-Y")) {
           echo "<a href='core/registerEvent.php?event=".$value['id']."'>S'inscrire</a>";
         }else {
           echo "<button>Inscription terminé</button>";
@@ -55,4 +55,4 @@
 
 <?php }
 
-<?php include 'templates/footer.php'; ?>
+ include 'templates/footer.php'; ?>

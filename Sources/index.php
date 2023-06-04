@@ -3,7 +3,6 @@
   require 'core/const.php';
   require 'core/functions.php';
   include 'templates/header.php'; 
-  include 'Calendar.php';
 
   $eventCount = count_events();
   $listOfEvents = get_listEvents();
@@ -34,6 +33,7 @@
         </tr>
         <tr>
           <td>Type</td>
+          <td>Titre</td>
           <td>Lieu</td>
           <td>Date</td>
         </tr>
@@ -52,7 +52,8 @@
                 $startAt = get_time($event['start_date']);
               ?>
         <tr class="col-md-4">
-          <td><?= $event['title'] ?></td>
+          <td><?= $event['type'] ?></td>
+          <td><?= $event['name'] ?></td>
           <td><?= $event['place'] ?></td>
           <td><?= $startAt ?></td>
           <td>

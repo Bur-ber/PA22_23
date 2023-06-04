@@ -203,7 +203,7 @@ function get_listEvents(){
   $query = $connect -> query("SELECT COUNT(*) as total_events FROM ".PRE_DB."EVENT");
   $eventCount = $query ->fetch();
 
-  $query = $connect -> query("SELECT title, place, description, register_start, start_date FROM ".PRE_DB."EVENT WHERE start_date >=CURDATE() ORDER BY start_date ASC");
+  $query = $connect -> query("SELECT * FROM ".PRE_DB."EVENT WHERE start_date >=CURDATE() ORDER BY start_date ASC");
   $listOfEvents = $query ->fetchAll();
 
   return $listOfEvents;
@@ -228,3 +228,47 @@ function del_POST($post){
 	$queryPrepared->execute(["id" => $post]);
 
 }
+
+// ---------  ADMIN PANEL FUNCTIONS --------------
+
+function delUser(int $id){
+	$connect = connectDB();
+	$queryPrepared = $connect->prepare("DELETE FROM " .PRE_DB. "USER SET status=1 WHERE id=:id");
+	$queryPrepared->execute(["id" => $id]);
+ }
+
+ function assignTeacher(int $id){
+	$connect = connectDB();
+	$queryPrepared = $connect->prepare("UPDATE " .PRE_DB. "USER SET status=2 WHERE id=:id");
+	$queryPrepared->execute(["id" => $id]);
+ }
+
+function assignUser(int $id){
+	$connect = connectDB();
+	$queryPrepared = $connect->prepare("UPDATE " .PRE_DB. "USER SET status=1 WHERE id=:id");
+	$queryPrepared->execute(["id" => $id]);
+ }
+
+ function assignMod(int $id){
+	$connect = connectDB();
+	$queryPrepared = $connect->prepare("UPDATE " .PRE_DB. "USER SET status=3 WHERE id=:id");
+	$queryPrepared->execute(["id" => $id]);
+ }
+
+ function assignAdmin(int $id){
+	$connect = connectDB();
+	$queryPrepared = $connect->prepare("UPDATE " .PRE_DB. "USER SET status=4 WHERE id=:id");
+	$queryPrepared->execute(["id" => $id]);
+ }
+
+ function banUser(int $id){
+	$connect = connectDB();
+	$queryPrepared = $connect->prepare("UPDATE " .PRE_DB. "USER SET status=0 WHERE id=:id");
+	$queryPrepared->execute(["id" => $id]);
+ }
+
+
+
+
+
+ 

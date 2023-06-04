@@ -6,9 +6,16 @@
 	$statusRequired = 4;
 
 	redirectIfNotConnected($statusRequired);
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+		$_POST["actions"](intval($_GET["user"]));
+		$message = "Action effectuée avec succès";
+	}
 ?>
-
 <h1>Panel administrateur</h1>
+
+<?php if(isset($message)){ ?>
+	<p><?= $message ?></p>
+<?php } ?>
 
 <?php
 	$connect = connectDB();
@@ -38,7 +45,6 @@
 
 		<?php
 		foreach($listOfUsers as $index => $user){
-			if($user["updated_at"] == '1000-01-01 00:00:00')$user["updated_at"] = $user["created_at"];
 			?>
 			<tr>
 				<td><?=$user["id"]?></td>
@@ -52,30 +58,92 @@
 				<td><?=$user["created_at"]?></td>
 				<td><?=$user["updated_at"]?></td>
 			<?php if($user["status"] == 0){?>
-				<class="select" name="actions">
-					<form action="adminPanel.php">
-						<select>
-							<option class='btn btn-danger' href='core/delUsers.php?id="<?php $user["id"]?>"'>Supprimer</option>
-							<option class='btn btn-danger' href='core/unbanUsers.php?id="<?php $user["id"]?>"'>Débannir</option>
+				<form method="POST" action="adminPanel.php?user=<?php echo $user["id"]?>">
+					<td>
+						<select name="actions" class="select">
+							<option class='btn' value="delUser">Supprimer</option>
+							<option class='btn' value="assignUser">Débannir</option>
 						</select>
-					</form>
-				</td>
+					</td>
+					<td>
+						<button><input type="submit" value="Confirmer" class="btn"></button>
+					</td>
+				</form>
 			</tr>
 			<?php
-			}else{?>
-					<form action="adminPanel.php">
-						<select>
-							<option class='btn btn-danger' href='core/delUsers.php?id="<?php $user["id"]?>"'>Supprimer</option>
-							<option class='btn btn-danger' href='core/banUsers.php?id="<?php $user["id"]?>"'>Bannir</option>
-							<option class='btn btn-danger' href='core/ModAssign.php?id="<?php $user["id"]?>"'>Nommer Modérateur</option>
-							<option class='btn btn-danger' href='core/adminAssign.php?id="<?php $user["id"]?>"'>Nommer Administrateur</option>
-						</select>
+			}elseif($user["status"] == 1){?>
+					<form method="POST" action="adminPanel.php?user=<?php echo $user["id"]?>">
+						<td>
+							<select name="actions" class="select">
+								<option class='btn' value="delUser">Supprimer</option>
+								<option class='btn' value="banUser">Bannir</option>
+								<option class='btn' value="assignMod">Nommer Modérateur</option>
+								<option class='btn' value="assignAdmin">Nommer Administrateur</option>
+								<option class='btn' value="assignTeacher"> Nommer Formateur</option>
+							</select>
+						</td>	
+						<td>
+							<button><input type="submit" value="Confirmer" class="btn"></button>
+						</td>
 					</form>
-				<button>
+				</tr>
+				
+		<?php
+			}elseif($user["status"] == 2){?>
+					<form method="POST" action="adminPanel.php?user=<?php echo $user["id"]?>">
+						<td>
+							<select name="actions" class="select">
+								<option class='btn' value="delUser">Supprimer</option>
+								<option class='btn' value="banUser">Bannir</option>
+								<option class='btn' value="assignMod">Nommer Modérateur</option>
+								<option class='btn' value="assignAdmin">Nommer Administrateur</option>
+								<option class='btn' value="assignUser">Déstituer Formateur</option>
+							</select>
+						</td>	
+						<td>
+							<button><input type="submit" value="Confirmer" class="btn"></button>
+						</td>
+					</form>
+				</tr>
+				
+		<?php
+		}
+			elseif($user["status"] == 3){?>
+				<form method="POST" action="adminPanel.php?user=<?php echo $user["id"]?>">
+					<td>
+						<select name="actions" class="select">
+							<option class='btn' value="delUser">Supprimer</option>
+							<option class='btn' value="banUser">Bannir</option>
+							<option class='btn' value="assignUser">Déstituer Modérateur</option>
+							<option class='btn' value="assignAdmin">Nommer Administrateur</option>
+							<option class='btn' value="assignTeacher"> Nommer Formateur</option>
+						</select>
+					</td>
+					<td>
+						<button><input type="submit" value="Confirmer" class="btn"></button>
+					</td>
+				</form>	
 			</tr>
 		<?php
 		}
-
+			elseif($user["status"] == 4){?>
+				<form method="POST" action="adminPanel.php?user=<?php echo $user["id"]?>">
+					<td>
+						<select name="actions" class="select">
+							<option class='btn' value="delUser">Supprimer</option>
+							<option class='btn' value="banUSer">Bannir</option>
+							<option class='btn' value="assignMod">Nommer Modérateur</option>
+							<option class='btn' value="assignUser">Déstituer Administrateur</option>
+							<option class='btn' value="assignTeacher"> Nommer Formateur</option>
+						</select>
+					</td>
+					<td>
+						<button><input type="submit" value="Confirmer" class="btn"></button>
+					</td>
+				</form>	
+			</tr>	
+<?php
+}
 		}
 		?>
 
