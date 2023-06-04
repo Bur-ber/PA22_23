@@ -14,7 +14,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        
+
     </head>
     <body>
 
@@ -27,9 +27,10 @@
                 <a class="col-1" href="index.php"> <img src="images/Logo-LE.gif" id="Logo" alt="Logo club Livry Escalade"> </a>
 
                 <!-- Barre de recherche -->
-                <form class="col-sm" role="search">
-                  <input class="navBar" type="search" aria-label="Search">
-                </form>
+                  <input class="navBar" id="navSearch" type="search" aria-label="Search">
+                  <div class="searchResult">
+
+                  </div>
 
 
                 <div >

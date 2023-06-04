@@ -76,7 +76,7 @@
     "id" => $listID
   ]);
 
-  $queryAddBuy = $connection -> prepare("INSERT INTO " .PRE_DB. "BUY(user, material, quantity, date) VALUES (:user, :material, :quantity)");
+  $queryAddBuy = $connection -> prepare("INSERT INTO " .PRE_DB. "BUY(user, material, quantity) VALUES (:user, :material, :quantity)");
   $queryAddBuy -> execute([
     "user" => $_SESSION['id'],
     "material" => $listID,
