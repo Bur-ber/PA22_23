@@ -49,6 +49,11 @@
           <span>Ajouter un produit</span>
         </a>
       </div>
+      <div class="modifyMaterial">
+        <a href="modifyMaterial.php">
+          <span>Modifier un produit</span>
+        </a>
+      </div>
 
     <?php } ?>
 
