@@ -28,8 +28,11 @@
 
                 <!-- Barre de recherche -->
                   <input class="navBar" id="navSearch" type="search" aria-label="Search">
-                  <div class="searchResult">
 
+                  <div id="searchResultContainer">
+                      <ul class="searchResult">
+
+                      </ul>
                   </div>
 
 

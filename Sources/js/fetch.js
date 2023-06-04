@@ -28,11 +28,13 @@ $(document).ready(function(){
         data:{input:input},
         success:function(data){
           $('.searchResult').html(data);
-            $('.searchResult').css('display', 'block');
+          //$('.searchResult').css('display', 'block');
+          $('#searchResultsContainer').show();
         }
       })
     }else {
-      $('.searchResult').css('display', 'none');
+      //$('.searchResult').css('display', 'none');
+      $('#searchResultsContainer').hide();
     }
   });
 });
