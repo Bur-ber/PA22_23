@@ -25,9 +25,7 @@
         </tr>
         <tr>
           <td><b><?php 
-            $fmt = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
-             $fmt->setPattern('dd MMMM YYYY');
-             echo $fmt->format(new DateTime() ); 
+             echo date("d/m/Y")
            ?>
           </b></td>
         </tr>
