@@ -50,6 +50,7 @@
 
           $queryLog = $connection -> prepare("INSERT INTO " .PRE_DB. "LOG(action, user, type) VALUES (:action, :user, :type)");
           $queryLog -> execute(["action" => "à ajouter un article au magasin.", "user" => $_SESSION['id'], "type" => "Ajout article"]);
+          sendNews(MAIL['shop'], 'shop');
 
           header("Location: shop.php");
         } else {

@@ -63,6 +63,15 @@
     Ville :
     <?php echo $result['city']; ?>
   </div>
+  <div class="mail-verified">
+    Email vérifié :
+    <?php if ($result['verified_mail']) {
+    	echo "Oui";
+    }else {
+    	echo 'Non <br>
+			<a href="core/sendVerifMail.php">Envoyer un mail de vérification</a>';
+    }?>
+  </div>
   <div class="event">
     Alerte mail lors d'un nouvel événement :
     <?php if($result['event'] == 0){

@@ -4,6 +4,9 @@
   require 'core/functions.php';
   include 'templates/header.php';
 
+  $statusRequired = 1;
+  redirectIfNotConnected($statusRequired);
+
 ?>
 
 <div class="container">

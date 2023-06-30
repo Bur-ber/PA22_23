@@ -2,7 +2,7 @@
   session_start();
   require 'core/const.php';
   require 'core/functions.php';
-  include 'templates/header.php'; 
+  include 'templates/header.php';
 
   $eventCount = count_events();
   $listOfEvents = get_listEvents();
@@ -24,10 +24,10 @@
           <th>Calendrier</th>
         </tr>
         <tr>
-          <td><b><?php 
-            $fmt = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
-             $fmt->setPattern('dd MMMM YYYY');
-             echo $fmt->format(new DateTime() ); 
+          <td><b><?php
+            // $fmt = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
+            //  $fmt->setPattern('dd MMMM YYYY');
+            //  echo $fmt->format(new DateTime() );
            ?>
           </b></td>
         </tr>
@@ -39,7 +39,7 @@
         </tr>
         <tr>
           <td><?php
-            if ($eventCount == 0) 
+            if ($eventCount == 0)
             {
               echo 'Aucun sujet';
             }else{

@@ -1,9 +1,9 @@
 <?php
   session_start();
   require 'core/const.php';
-  require 'core/functions.php'; 
-  include 'templates/header.php'; 
-  
+  require 'core/functions.php';
+  include 'templates/header.php';
+
   $connect = connectDB();
   $prepare = $connect-> query("SELECT * FROM ".PRE_DB."USER");
   $users = $prepare->fetchAll();
@@ -13,9 +13,9 @@
     <a href="message.php?id=<?= $user['id'];?>">
       <p><?= $user['mail']; ?></p>
     </a>
-    <?php 
+    <?php
     }
 
-  } 
-  ?>
-<?php include 'templates/footer.php'; ?>
+  }
+
+  include 'templates/footer.php'; ?>
