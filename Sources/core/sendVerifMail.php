@@ -35,9 +35,9 @@
       $mail->charSet = "UTF-8";
       $mail->isHTML(true);                                  //Set email format to HTML
       $mail->Subject = 'Lien de confirmation d\'email';
-      $mail->Body    = 'Bonjour,<br>Ceci est un message automatique, vous trouverez le lien de vérification d\'email ci-dessous <a href="livryescalade.fr/core/verifyMail.php,id='. $_SESSION['id'] .'">Vérifier votre adresse mail</a>';
+      $mail->Body    = 'Bonjour,<br>Ceci est un message automatique, vous trouverez le lien de vérification d\'email ci-dessous <a href="livryescalade.helioserv.fr/core/verifyMail.php,id='. $_SESSION['id'] .'">Vérifier votre adresse mail</a>';
       $mail->AltBody = 'Bonjour,
-      Ceci est un message automatique, vous trouverez le lien de vérification d\'email ci-dessous : livryescalade.fr/core/verifyMail.php?id='. $_SESSION['id'];
+      Ceci est un message automatique, vous trouverez le lien de vérification d\'email ci-dessous : livryescalade.helioserv.fr/core/verifyMail.php?id='. $_SESSION['id'];
 
       $mail->send();
       echo 'Message has been sent';
