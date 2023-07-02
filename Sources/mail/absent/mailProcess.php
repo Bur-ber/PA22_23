@@ -1,8 +1,8 @@
 <?php
   session_start();
-  require '../core/const.php';
-  require '../core/functions.php';
-  include '../templates/header.php';
+  require '../../core/const.php';
+  require '../../core/functions.php';
+  include '../../templates/header.php';
 
   $time = fgetc(fopen('time.txt', 'rb'));
 
@@ -11,6 +11,6 @@
 
   foreach ($result as $value) {
     if ($value['last_connection'] + 30 * $time <= time()) {
-      sendMail(MAIL['absent'], $value['mail']);
+      sendMail('Absence prolongée', fread(fopen('absent.php', 'r'), filesize('absent.php')), $value['mail']);
     }
   }

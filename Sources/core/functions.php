@@ -268,7 +268,7 @@ function assignUser(int $id){
  }
 
 
-function sendMail($content, $user){
+function sendMail($title, $content, $user){
   use PHPMailer\PHPMailer\PHPMailer;
   use PHPMailer\PHPMailer\SMTP;
   use PHPMailer\PHPMailer\Exception;
@@ -278,43 +278,40 @@ function sendMail($content, $user){
   $mail = new PHPMailer(true);
 
   try {
-    //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.office365.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'livryescalade@outlook.fr';                     //SMTP username
-    $mail->Password   = '8Unt$U{7*9eKp9';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMai>
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.office365.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'livryescalade@outlook.fr';
+    $mail->Password   = '8Unt$U{7*9eKp9';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
 
-    //Recipients
     $mail->setFrom('livryescalade@outlook.fr', 'Administrateur mail');
-    $mail->addAddress($user);     //Add a recipient
+    $mail->addAddress($user);
 
-      //Attachments
+    $mail->charSet = "UTF-8";
+    $mail->isHTML(true);
+    $mail->Subject = $title;
+    $mail->Body    = $content;
+    $mail->AltBody = strip_tags($content);
 
-      //Content
-      $mail->charSet = "UTF-8";
-      $mail->isHTML(true);                                  //Set email format to HTML
-      $mail->Subject = $content[0];
-      $mail->Body    = $content[1];
-      $mail->AltBody = strip_tags($content[1]);
-
-      $mail->send();
-      echo 'Message has been sent';
+    $mail->send();
+    echo 'Message has been sent';
   } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }
 
 }
 
-function sendNews($news, $option){
+function sendNews($title, $text, $option){
+  $templates = glob('../mail/'.$option.'/*.php');
+  $text = $templates[$text];
   $connection = connectDB();
   $queryPrepared = $connection -> query("SELECT mail FROM". PRE_DB ."USER WHERE ". $option ."= 1");
   $result = $queryPrepared -> fetchAll();
 
   foreach ($result as $value) {
-    sendMail($news, $value['mail']);
+    sendMail($title, $text, $value['mail']);
   }
 }
