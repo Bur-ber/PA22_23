@@ -2,7 +2,7 @@
 	session_start();
 	require 'core/const.php';
 	require 'core/functions.php';
-  	include 'templates/header.php';
+  include 'templates/header.php';
 	addToLogVisit("Inscription pt.3");
 
 	if( isset($_SESSION['errors'])) {
@@ -17,7 +17,6 @@
 
 	if( isset($_SESSION['image'])) {
 		$image = $_SESSION['image'];
-	  $pieces = unserialize($_SESSION['rightOrder']);
 	}
 ?>
 

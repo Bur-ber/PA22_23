@@ -5,7 +5,7 @@ $listImg = glob('images/forCaptcha/*.jpg');
 $image = $listImg[array_rand($listImg)];
 
 $size = 100; // Taille des carrés
-$captchaPieces = []; // Tableau pour stocker les morceaux de l'image
+$pieces = []; // Tableau pour stocker les morceaux de l'image
 
 // Charge l'image
 $img = imagecreatefromjpeg($image);
@@ -45,7 +45,6 @@ foreach ($pieces as $piece) {
 }
 
 $_SESSION['rightOrder'] = serialize($filenames);
-$_SESSION['pieces'] = serialize($pieces);
 $_SESSION['image'] = $image;
 
 header("Location: registerPart3.php");
