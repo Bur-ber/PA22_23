@@ -3,6 +3,7 @@ session_start();
 $listImg = glob('images/forCaptcha/*.jpg');
 
 $image = $listImg[array_rand($listImg)];
+$_SESSION['image'] = $image;
 
 $size = 100; // Taille des carrés
 $pieces = []; // Tableau pour stocker les morceaux de l'image
@@ -34,6 +35,8 @@ if (!file_exists($piecesPath)) {
   }
 }
 
+$piecesPath = 'images/forCaptcha/captchaPieces/';
+
 $filenames = [];
 // Boucle à travers les morceaux de l'image
 foreach ($pieces as $piece) {
@@ -46,6 +49,5 @@ foreach ($pieces as $piece) {
 }
 
 $_SESSION['rightOrder'] = serialize($filenames);
-$_SESSION['image'] = $image;
 
 header("Location: registerPart3.php");

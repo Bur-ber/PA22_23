@@ -17,6 +17,7 @@
 
 	if( isset($_SESSION['image'])) {
 		$image = $_SESSION['image'];
+		unset($_SESSION['image']);
 	}
 ?>
 
@@ -86,7 +87,7 @@
 
 	<div class="col-md-4">
 		<div class="captcha-image">
-			<img src="<?php echo $_SESSION['image']; ?>" alt="Captcha image">
+			<img src="<?php echo $image; ?>" alt="Captcha image">
 		</div>
 	</div>
 </div>
