@@ -2,22 +2,8 @@
     session_start();
     require 'core/const.php';
     require 'core/functions.php';
-    include 'templates/header.php';
-    include 'templates/formError.php';
-?>
-    <h1>Messagerie</h1>
-    <form  action="" method="POST">
-        <textarea name="msg" id="msg" cols="30" rows="5"></textarea>
-        <br>
-        <input type="submit" name="send">
 
-    </form>
-    <section id="messages">
-
-    </section>
-
-
-<?php
+if(!empty($_POST)){
     $errors=[];
     $getid = $_GET['id'];
     $getuser = get_receiver($getid);
@@ -34,7 +20,8 @@
                             $_SESSION['errors'] = serialize($errors);
                         }
                         $message = htmlspecialchars($_POST['msg'], ENT_QUOTES);
-                        send_message($message, $getid);                        
+                        send_message($message, $getid);
+                        header('Location: message.php?id=' . $getid);                   
                         }   
             }else{
                 $errors['message'] =  "Aucun utilisateur trouvé";
@@ -46,7 +33,29 @@
         }     
 
 }
+}
 
+
+    include 'templates/header.php';
+    include 'templates/formError.php';
+?>
+    <h1>Messagerie</h1>
+    <form  action="" method="POST">
+        <textarea name="msg" id="msg" cols="30" rows="5"></textarea>
+        <br>
+        <input type="submit" name="send">
+
+    </form>
+    <section id="messages">
+
+    </section>
+
+
+<?php
+    
+if(isset($_GET['id'])){
+    $getid = $_GET['id'];
+}
 $mail = get_mail($getid);
 $messages = get_message($getid);
 foreach ($messages as $index => $sentMessage){
@@ -67,9 +76,7 @@ foreach ($messages as $index => $sentMessage){
     }
         
 }
-unset($_POST['msg']);
-unset($_POST['send']);
-unset($_POST['submit']);
+
 ?>
 
 <a class="btn btn-light" href="mail.php">Retour en arrière</a>
