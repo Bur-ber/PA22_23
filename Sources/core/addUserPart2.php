@@ -44,7 +44,7 @@ if(empty($listOfErrors)){
     "mail" => $_SESSION['mail'],
   ]);
 
-  header("Location: ../captcha.php");
+  header("Location: ../registerPart3.php");
 
 } else {
 //Si NOK

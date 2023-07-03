@@ -190,6 +190,7 @@ $i = 0;
 
         
     </div>
+    <a href="account.php">Retour au profil</a>
 
 
     <script src="js/avatarMaker.js"></script>

@@ -4,7 +4,11 @@
   require 'core/functions.php';
   include 'templates/header.php';
 
+
   addToLogVisit("Informations Evénements");
+  
+  $statusRequired = 1;
+  redirectIfNotConnected($statusRequired);
 
   $getid = $_GET['id'];
   $event = getEvent($getid);
