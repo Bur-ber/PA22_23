@@ -33,7 +33,7 @@ if(empty($listOfErrors)){
 // --> Insertion en BDD
 
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "USER SET address=:address, complement=:complement, postal=:postal, city=:city, created_at=:created_at WHERE mail=:mail");
+  $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "USER SET address=:address, complement=:complement, postal=:postal, city=:city WHERE mail=:mail");
 
 // Start Request
   $queryPrepared -> execute([
@@ -42,7 +42,6 @@ if(empty($listOfErrors)){
     "postal" => $_POST["postal"],
     "city" => $_POST["city"],
     "mail" => $_SESSION['mail'],
-    "created_at" => now()
   ]);
 
   header("Location: ../captcha.php");

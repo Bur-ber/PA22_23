@@ -6,6 +6,7 @@
 
   $eventCount = count_events();
   $listOfEvents = get_listEvents();
+  addToLogVisit("Accueil");
 
   ?>
 
@@ -55,7 +56,7 @@
           <td><?= $event['place'] ?></td>
           <td><?= $startAt ?></td>
           <td>
-            <a href="event/readEvent" id="calendar-Btn">En savoir +</a>
+            <a href="readEvent.php?id=<?=$event['id']?>" id="calendar-Btn">En savoir +</a>
           </td>
           <?php
             $i++;

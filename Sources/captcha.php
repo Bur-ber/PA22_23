@@ -45,6 +45,7 @@ foreach ($pieces as $piece) {
 }
 
 $_SESSION['rightOrder'] = serialize($filenames);
+$_SESSION['pieces'] = serialize($pieces);
 $_SESSION['image'] = $image;
 
 header("Location: registerPart3.php");

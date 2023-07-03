@@ -7,6 +7,7 @@
 
   $statusRequired = 1;
   redirectIfNotConnected($statusRequired);
+  addToLogVisit("Profil Utilisateur");
 
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("SELECT * FROM " .PRE_DB. "USER WHERE id=:id");
@@ -113,6 +114,10 @@
 
 <div class="modify-button">
   <a href="modifyAccount.php">Modifier mon profil</a>
+</div>
+
+<div class="modify-button">
+  <a href="avatarMaker.php">Créer mon avatar</a>
 </div>
 
 <div class="export-button">

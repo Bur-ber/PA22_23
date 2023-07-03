@@ -2,7 +2,10 @@
 	session_start();
 	require 'core/const.php';
 	require 'core/functions.php';
-  include 'templates/header.php'; ?>
+  	include 'templates/header.php'; 
+  	addToLogVisit("Inscription pt.1");
+  ?>
+  
 
   <div class="container">
 <h1>S'inscrire</h1>

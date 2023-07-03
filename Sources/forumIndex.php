@@ -2,6 +2,7 @@
   session_start();
   require 'core/const.php';
   require 'core/functions.php';
+  addToLogVisit("Forum");
 
   if(!isConnected()){
     header("Location:index.php");

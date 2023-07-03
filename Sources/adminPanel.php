@@ -10,6 +10,7 @@
 		$_POST["actions"](intval($_GET["user"]));
 		$message = "Action effectuée avec succès";
 	}
+	addToLogVisit("Panel Admin");
 ?>
 <h1>Panel administrateur</h1>
 
@@ -23,6 +24,8 @@
 	$listOfUsers = $query -> fetchAll();
 
 ?>
+<a href="adminPanelArchives.php">Evénements archivés</a>
+<a href="adminPanelEvents.php">Evénements</a>
 
 <table class="table">
 	<thead>

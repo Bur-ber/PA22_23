@@ -267,6 +267,10 @@ function assignUser(int $id){
 	$queryPrepared->execute(["id" => $id]);
  }
 
+ function delEvent(int $id){
+    $connect = connectDB();
+    $queryPrepared = $connect->prepare("DELETE FROM " .PRE_DB. "EVENT  WHERE id=:id");
+    $queryPrepared->execute(["id" => $id]);
 
 function sendMail($title, $content, $user){
   require '/home/debian/vendor/autoload.php';
@@ -298,17 +302,98 @@ function sendMail($title, $content, $user){
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }
 
-}
+//   $mail = new PHPMailer(true);
 
-function sendNews($title, $text, $option){
-  $templates = glob('../mail/'.$option.'/*.php');
-  $text = $templates[$text];
+//   try {
+//     //Server settings
+//     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+//     $mail->isSMTP();                                            //Send using SMTP
+//     $mail->Host       = 'smtp.office365.com';                     //Set the SMTP server to send through
+//     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+//     $mail->Username   = 'livryescalade@outlook.fr';                     //SMTP username
+//     $mail->Password   = '8Unt$U{7*9eKp9';                               //SMTP password
+//     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+//     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMai>
+
+//     //Recipients
+//     $mail->setFrom('livryescalade@outlook.fr', 'Administrateur mail');
+//     $mail->addAddress($user);     //Add a recipient
+
+//       //Attachments
+
+//       //Content
+//       $mail->charSet = "UTF-8";
+//       $mail->isHTML(true);                                  //Set email format to HTML
+//       $mail->Subject = $content[0];
+//       $mail->Body    = $content[1];
+//       $mail->AltBody = strip_tags($content[1]);
+
+//       $mail->send();
+//       echo 'Message has been sent';
+//   } catch (Exception $e) {
+//       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+//   }
+
+// }
+
+function sendNews($news, $option){
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("SELECT mail FROM". PRE_DB ."USER WHERE ". $option ."= 1");
   $queryPrepared -> execute();
   $result = $queryPrepared -> fetchAll();
 
   foreach ($result as $value) {
-    sendMail($title, $text, $value['mail']);
+    sendMail($news, $value['mail']);
   }
+}
+
+function getEvent( int $id){
+
+  $connect = connectDB();
+  $request = $connect->prepare('SELECT * FROM '.PRE_DB.'EVENT WHERE id = :id_field');
+  $request->execute([
+    'id_field' => $id
+  ]);
+  $event = $request->fetchAll();
+  return $event;
+
+}
+
+function hasJoined ($id): bool{
+  $connect = connectDB();
+  $request = $connect->prepare('SELECT user FROM '.PRE_DB.'JOIN WHERE user = :id');
+  $request->execute([
+    'id' => $id
+  ]);
+  $user_id = $request->fetch();
+  if($user_id == $id){
+      return true;
+  }else{
+      return false;
+  }
+}
+
+
+function addToLogVisit($pageName) {
+
+  header('Content-Type: text/html; charset=utf-8');
+
+  date_default_timezone_set('Europe/Paris');
+  $timestamp = date('d/m/Y h:i:s');
+  $pseudo = $_SESSION['pseudo'] ?? 'Visiteur - ['.$_SERVER['REMOTE_ADDR'].']';  // Utilise 'Visiteur - [adresse IP]' si la session 'pseudo' n'est pas définie
+  $directory = $_SERVER['DOCUMENT_ROOT']."/logs/logVisit/";
+  $userAgent = $_SERVER['HTTP_USER_AGENT'];
+
+  $logMessage = "[" . $timestamp . "] - Page visitée : " . $pageName . " - Utilisateur : " . $pseudo . " - via le user agent : " . $userAgent . "\n";
+
+  // Vérifier si le répertoire des logs existe, sinon le créer
+  if (!is_dir($directory)) {
+
+      mkdir($directory, 0755, true);
+
+  }
+
+  // Écrire le message de log dans le fichier de log
+  file_put_contents($directory . date('d-m-Y') . "-logVisit.log", $logMessage, FILE_APPEND);
+
 }

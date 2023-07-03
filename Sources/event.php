@@ -3,6 +3,7 @@
   require 'core/const.php';
   require 'core/functions.php';
   include 'templates/header.php';
+  addToLogVisit("Page événements");
 
   $connection = connectDB();
   $queryPrepared = $connection -> prepare("SELECT * FROM ". PRE_DB."EVENT");
