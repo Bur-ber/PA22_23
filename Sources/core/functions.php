@@ -111,7 +111,6 @@ function create_post($title, $message){
   ]);
 }
 
-
 function create_comment_for_post($post, $comment){
   $pdo = connectDB();
   $request = $pdo->prepare('INSERT INTO '.PRE_DB.'COMMENT (author, message, commented_at, corresponding_post) VALUES(:author, :message, now(), :corresponding_post)');
@@ -123,7 +122,6 @@ function create_comment_for_post($post, $comment){
   ]);
 
 }
-
 
 function is_answer_owner($response_user_id): bool {
 
@@ -142,7 +140,6 @@ function get_receiver($getid){
     return $getuser;
 
 }
-
 
 function send_message($message, $getid){
     $connect = connectDB();
@@ -195,6 +192,7 @@ function count_events(){
 
   return $eventCount;
 }
+
 function get_listEvents(){
     // on se connecte à notre base de données
   $connect = connectDB();
@@ -271,6 +269,7 @@ function assignUser(int $id){
     $connect = connectDB();
     $queryPrepared = $connect->prepare("DELETE FROM " .PRE_DB. "EVENT  WHERE id=:id");
     $queryPrepared->execute(["id" => $id]);
+  }
 
 function sendMail($title, $content, $user){
   require '/home/debian/vendor/autoload.php';
