@@ -51,7 +51,9 @@
           $queryLog = $connection -> prepare("INSERT INTO " .PRE_DB. "LOG(action, user, type) VALUES (:action, :user, :type)");
           $queryLog -> execute(["action" => "à ajouter un article au magasin.", "user" => $_SESSION['id'], "type" => "Ajout article"]);
           $_SESSION['optShop'] = $_POST;
-          sendNews('Nouveau produit disponible !', fread(fopen('mail/shop/chosen.txt', 'r'), 1), 'shop');
+          $file = fopen('mail/shop/chosen.txt', 'r');
+          sendNews('Nouveau produit disponible !', fread($file, 1), 'shop');
+          fclose($file);
 
           header("Location: shop.php");
         } else {

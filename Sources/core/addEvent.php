@@ -73,5 +73,7 @@
   $queryPrepared = $connection -> prepare("INSERT INTO ". PRE_DB ."EVENT(place, description, register_start, start_date, end_date, name, nbr_space, price, on_register) VALUES (:place, :description, :register_start, :start_date, :end_date, :name, :nbr_space, :price, :on_register)");
   $queryPrepared -> execute(['place' => $place, 'description' => $desc, 'register_start' => $_POST['register'], 'start_date' => $_POST['start'], 'end_date' => $_POST['end'], 'name' => $_POST['name'], 'nbr_space' => $_POST['nbr_space'], 'price' => $_POST['price'], 'on_register' => $_POST['on_register-select']]);
   $_SESSION['optEvent'] = $_POST;
-  sendNews('Nouvel événement à ne pas manquer !', fread(fopen('mail/event/chosen.txt', 'r'), 1), 'event');
+  $file = fopen('mail/event/chosen.txt', 'r');
+  sendNews('Nouvel événement à ne pas manquer !', fread($file, 1), 'event');
+  fclose($file);
   header("Location: ../event.php");

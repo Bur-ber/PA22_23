@@ -340,6 +340,7 @@ function sendNews($news, $option){
   $queryPrepared = $connection -> prepare("SELECT mail FROM". PRE_DB ."USER WHERE ". $option ."= 1");
   $queryPrepared -> execute();
   $result = $queryPrepared -> fetchAll();
+  print_r($result);
 
   foreach ($result as $value) {
     sendMail($news, $value['mail']);
