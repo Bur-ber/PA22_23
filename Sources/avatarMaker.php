@@ -1,10 +1,10 @@
 <?php
-$faces = glob("../Resources/images/images/faces/*.png");
-$bodies = glob("../Resources/images/images/bodies/*.png");
-$eyes = glob("../Resources/images/images/eyes/*.png");
-$mouths = glob("../Resources/images/images/mouths/*.png");
-$noses = glob("../Resources/images/images/noses/*.png");
-$hairs = glob("../Resources/images/images/hairs/*.png");
+$faces = glob("./forAvatar/faces/*.png");
+$bodies = glob("./forAvatar/bodies/*.png");
+$eyes = glob("./forAvatar/eyes/*.png");
+$mouths = glob("./forAvatar/mouths/*.png");
+$noses = glob("./forAvatar/nosesg/*.png");
+$hairs = glob("./forAvatar/hairs/*.png");
 $i = 0;
 ?>
 <!DOCTYPE html>
