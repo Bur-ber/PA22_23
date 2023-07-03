@@ -36,9 +36,9 @@
       Ceci est un message automatique, vous trouverez le lien de vérification d\'email ci-dessous : livryescalade.helioserv.fr/core/verifyMail.php?id='. $_SESSION['id'];
 
       $mail->send();
+			header('Location: ../account.php');
       echo 'Message has been sent';
-			header('Location: ../account.php');
   } catch (Exception $e) {
-      echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-			header('Location: ../account.php');
+		header('Location: ../account.php');
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }
