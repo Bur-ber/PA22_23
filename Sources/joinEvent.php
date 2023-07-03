@@ -8,4 +8,4 @@ $queryPrepared->execute([
     "user" => $_SESSION['id'],
     "event" => $_GET['id']
 ]);
-header("Location:../readEvent.php?id=$_GET['id']");
+header("Location: ./readEvent.php?id=$_GET['id']");

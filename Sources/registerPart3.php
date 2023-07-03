@@ -2,8 +2,8 @@
 	session_start();
 	require 'core/const.php';
 	require 'core/functions.php';
-  include 'templates/header.php';
 	addToLogVisit("Inscription pt.3");
+  include 'templates/header.php';
 
 	if( isset($_SESSION['errors'])) {
 		$listOfErrors = unserialize($_SESSION['errors']);
@@ -57,7 +57,8 @@
     <?php
 		$piecesPath = glob('images/forCaptcha/captchaPieces/*.jpg');
 		if (count($piecesPath) != 9) {
-			header("Location: captcha.php");
+			// header("Location: captcha.php");
+			include 'captcha.php';
 		}
 		foreach ($piecesPath as $index => $piece):
 		?>

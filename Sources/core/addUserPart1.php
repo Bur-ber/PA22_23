@@ -44,9 +44,9 @@ if (!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)){
   $listOfErrors[] = "L'email est incorrect";
 }else{
   $connection = connectDB();
-  $queryPrepared = $connection -> prepare("SELECT id FROM ".PRE_DB."user WHERE mail=:mail");
-  $queryPrepared -> execute(["mail" => $_POST["mail"]]);
-  $result = $queryPrepared -> fetch();
+  $queryPrepared = $connection->prepare("SELECT id FROM ".PRE_DB."user WHERE mail=:mail");
+  $queryPrepared->execute(["mail" => $_POST["mail"]]);
+  $result = $queryPrepared->fetch();
   if (!empty($result)) {
     $listOfErrors[] = "L'email est déjà utilisé";
   }

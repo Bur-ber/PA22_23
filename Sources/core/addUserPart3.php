@@ -48,7 +48,7 @@
 
   if (!empty($listOfErrors)) {
     $_SESSION["errors"] = serialize($listOfErrors);
-    header("Location: ../captcha.php");
+    header("Location: ../registerPart3.php");
   }else {
     $connection = connectDB();
     $queryPrepared = $connection -> prepare("UPDATE " .PRE_DB. "USER SET event=:event, shop=:shop WHERE mail=:mail");
