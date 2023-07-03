@@ -358,7 +358,7 @@ function addToLogVisit($pageName) {
   header('Content-Type: text/html; charset=utf-8');
 
   date_default_timezone_set('Europe/Paris');
-  $timestamp = strftime('%d/%m/%Y %H:%M:%S');
+  $timestamp = date('d/m/Y h:i:s');
   $pseudo = $_SESSION['pseudo'] ?? 'Visiteur - ['.$_SERVER['REMOTE_ADDR'].']';  // Utilise 'Visiteur - [adresse IP]' si la session 'pseudo' n'est pas définie
   $directory = $_SERVER['DOCUMENT_ROOT']."/logs/logVisit/";
   $userAgent = $_SERVER['HTTP_USER_AGENT'];
