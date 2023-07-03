@@ -36,7 +36,7 @@ if ($postCount == 0) {
 else{
 	?>
 
-	<table width="700">
+	<table width="700" class="post">
     <tr>
 		<td>
 		Auteur

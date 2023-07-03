@@ -104,4 +104,23 @@
             </nav>
 
         </header>
+<?php
+
+if(!isset($_COOKIE['allowCookies']) || empty($_COOKIE['allowCookies'])) {
+
+?>
+
+<div id="cookie-use-alert" class="alert alert-info alert-dismissible fade show" role="alert">
+
+    <strong>Information:</strong> Ce site utilise des cookies pour vous offrir le meilleur service. En poursuivant votre navigation, vous acceptez l’utilisation des cookies.
+
+    <button id="decline_cookies" type="button" class="btn btn-danger" style="margin-left:10px;">Refuser et Quitter</button>
+
+    <button id="allow_cookies" type="button" class="btn btn-success" style="margin-left:10px;">Accepter et continuer</button>
+    
+</div>
+
+<script src="js/allowCookies.js"></script>
+
+<?php } ?>
         <!--<script src="js/burgerMenu.js"></script>-->

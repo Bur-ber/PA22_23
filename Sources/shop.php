@@ -3,6 +3,8 @@
   require 'core/const.php';
   require 'core/functions.php';
   include 'templates/header.php';
+  
+  addToLogVisit("Magasin");
 
   if( isset($_SESSION['error'])) {
 		$error = $_SESSION['error'];

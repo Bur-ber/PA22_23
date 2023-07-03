@@ -6,6 +6,7 @@
   $statusRequired = 1;
 
   redirectIfNotConnected($statusRequired);
+  addToLogVisit("Panier");
 
   if( isset($_SESSION['error'])) {
 		$error = $_SESSION['error'];

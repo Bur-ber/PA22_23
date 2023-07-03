@@ -67,6 +67,9 @@ foreach ($messages as $index => $sentMessage){
     }
         
 }
+unset($_POST['msg']);
+unset($_POST['send']);
+unset($_POST['submit']);
 ?>
 
 <a class="btn btn-light" href="mail.php">Retour en arrière</a>

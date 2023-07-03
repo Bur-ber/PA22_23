@@ -3,7 +3,7 @@
   require 'core/const.php';
   require 'core/functions.php';
   include 'templates/header.php';
-
+  addToLogVisit("Messagerie");
   $connect = connectDB();
   $prepare = $connect-> query("SELECT * FROM ".PRE_DB."USER");
   $users = $prepare->fetchAll();

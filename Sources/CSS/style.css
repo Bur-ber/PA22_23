@@ -140,16 +140,19 @@ nav {
   margin: auto;
   color: #060707;
   align-self: center;
+  padding: 10px;
 }
 
 #calendar table {
   border: 5px #006F9A solid;
   border-radius: 30px;
+  text-align: center;
 }
 
 #calendar table th {
   text-align: center;
   font-size: 24px;
+  text-align: center;
 }
 
 #calendar-Btn{
@@ -220,3 +223,15 @@ nav {
     width: auto;
 }
 /*------------------------- SHOP END ------------------------------ */
+/*-------------------------- FORUM -------------------------------- */
+.post{
+  border-color: #332F2C;
+  background-color: #1b6b0c;
+  border-width: 3px;
+}
+
+
+/*------------------------ FORUM END ------------------------------ */
+/*-------------------------- LOGIN -------------------------------- */
+
+/*------------------------ LOGIN END ------------------------------ */

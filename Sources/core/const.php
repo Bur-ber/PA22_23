@@ -8,4 +8,4 @@ define("USER_DB", "root");
 define("PWD_DB", "");
 define("DSN_DB", "mysql:host=localhost;dbname=PA22_23;port=3306");
 define("PRE_DB", "KF20R6U8_");
-define("MAIL", {'absent' => {'Période d\'inactivité prolongé', fread(fopen('../mail/absent.txt', 'rb'), filesize('../mail/absent.txt'))}, 'event' => {'Nouvel évènements disponible', fread(fopen('../mail/event.txt', 'rb'), filesize('../mail/event.txt'))}, 'shop' => {'Nouveau matériel dans le magasin', fread(fopen('../mail/shop.txt', 'rb'), filesize('../mail/shop.txt'))}});
+// define("MAIL", {'absent' => {'Période d\'inactivité prolongé', fread(fopen('../mail/absent.txt', 'rb'), filesize('../mail/absent.txt'))}, 'event' => {'Nouvel évènements disponible', fread(fopen('../mail/event.txt', 'rb'), filesize('../mail/event.txt'))}, 'shop' => {'Nouveau matériel dans le magasin', fread(fopen('../mail/shop.txt', 'rb'), filesize('../mail/shop.txt'))}});

@@ -2,6 +2,7 @@
   session_start();
   require 'core/const.php';
   require 'core/functions.php';
+  addToLogVisit("Connexion");
 
 
 if( !empty($_POST['mail']) && !empty($_POST['pwd'])){
@@ -37,7 +38,7 @@ include 'templates/header.php';
 </div>
 
 <form  action="login.php" method="POST">
-<div class="mb-3">
+<div class="mb-3" >
   <label for="mail" class="form-label">Votre email</label>
     <input type="email" name="mail" class="form-control" id="mail">
 </div>
