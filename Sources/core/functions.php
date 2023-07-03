@@ -334,7 +334,7 @@ function sendMail($title, $content, $user){
 //       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 //   }
 
-// }
+}
 
 function sendNews($news, $option){
   $connection = connectDB();
