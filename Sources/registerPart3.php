@@ -17,7 +17,7 @@
 
 	if( isset($_SESSION['image'])) {
 		$image = $_SESSION['image'];
-	  $pieces = unserialize($_SESSION['pieces']);
+	  $pieces = unserialize($_SESSION['rightOrder']);
 	}
 ?>
 

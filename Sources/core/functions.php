@@ -269,22 +269,18 @@ function assignUser(int $id){
 
 
 function sendMail($title, $content, $user){
-  use PHPMailer\PHPMailer\PHPMailer;
-  use PHPMailer\PHPMailer\SMTP;
-  use PHPMailer\PHPMailer\Exception;
-
   require '/home/debian/vendor/autoload.php';
 
-  $mail = new PHPMailer(true);
+  $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
   try {
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_SERVER;
     $mail->isSMTP();
     $mail->Host       = 'smtp.office365.com';
     $mail->SMTPAuth   = true;
     $mail->Username   = 'livryescalade@outlook.fr';
     $mail->Password   = '8Unt$U{7*9eKp9';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
     $mail->setFrom('livryescalade@outlook.fr', 'Administrateur mail');
@@ -298,7 +294,7 @@ function sendMail($title, $content, $user){
 
     $mail->send();
     echo 'Message has been sent';
-  } catch (Exception $e) {
+  } catch (PHPMailer\PHPMailer\Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }
 
@@ -308,7 +304,8 @@ function sendNews($title, $text, $option){
   $templates = glob('../mail/'.$option.'/*.php');
   $text = $templates[$text];
   $connection = connectDB();
-  $queryPrepared = $connection -> query("SELECT mail FROM". PRE_DB ."USER WHERE ". $option ."= 1");
+  $queryPrepared = $connection -> prepare("SELECT mail FROM". PRE_DB ."USER WHERE ". $option ."= 1");
+  $queryPrepared -> execute();
   $result = $queryPrepared -> fetchAll();
 
   foreach ($result as $value) {
